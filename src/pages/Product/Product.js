@@ -1,6 +1,6 @@
 import React from 'react';
 import { data } from '../data';
-import '../css/product.css'
+import '../css/Product.css'
 export default function Product() {
     return (
         <>
