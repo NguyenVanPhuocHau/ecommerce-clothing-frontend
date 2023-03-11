@@ -1,18 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { publicRoutes } from '~/routes';
-import { DefaultLayout } from '~/layouts';
+import { publicRoutes } from './routes';
+import { DefaultLayout } from './layouts';
 import { Fragment } from 'react';
-import PageNotFound from '~/pages/PageNotFound';
-import Review from '~/pages/Review';
+import PageNotFound from './pages/PageNotFound';
+import Review from './pages/Review';
 
 function App() {
     return (
         <Router>
             <div className="App">
                 <Routes>
-                    <Route path="forgot-password/:id/:token" element={<ForgotPassword />} />
-                    <Route path="*" element={<PageNotFound />} />;
-                    <Route path="/review" element={<Review />} />;
+                    {/* <Route path="forgot-password/:id/:token" element={<ForgotPassword />} /> */}
+                    <Route path="*" element={<PageNotFound/>} />;
+                    <Route path="/review" element={<Review/>} />;
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
                         let Layout = DefaultLayout;
@@ -28,7 +28,7 @@ function App() {
                                 path={route.path}
                                 element={
                                     <Layout>
-                                        <Page />
+                                        <Page/>
                                     </Layout>
                                 }
                             />

@@ -1,15 +1,11 @@
-
-
+import config from "../config"
+import Home from "../pages/Home";
 const publicRoutes = [
-    { path: '/', component: Home },
-    
+    { path: "/", component: Home },
+
 
 ];
-const paths = [];
-publicRoutes.forEach((element, index) => {
-    paths[index] = element.path;
-});
+
 
 const privateRoutes = [];
-
-export { publicRoutes, privateRoutes, paths };
+export { publicRoutes, privateRoutes };
