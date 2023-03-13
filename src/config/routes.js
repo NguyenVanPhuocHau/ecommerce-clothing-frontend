@@ -4,5 +4,7 @@ const routes = {
     not_found: '*',
     // cart
     cart: '/cart',
+    //chi tiết sp
+    chi: '/chi',
 };
 export default routes;
