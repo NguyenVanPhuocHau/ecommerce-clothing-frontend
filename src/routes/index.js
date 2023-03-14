@@ -1,9 +1,9 @@
 import config from "../config"
-import chitietsp from "../pages/Chitietsp";
+import ProductDetails from "../pages/ProductDetails";
 import Home from "../pages/Home";
 const publicRoutes = [
     { path: config.routes.home, component:  Home},
-    { path: config.routes.chi, component:  chitietsp},
+    { path: config.routes.product_details, component:  ProductDetails},
 
 
 ];
