@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 export default function Home() {
   return (
     <div className={cx('home')}>
-      Home
-    </div>
+      Home         
+    </div>   
   )
 }
