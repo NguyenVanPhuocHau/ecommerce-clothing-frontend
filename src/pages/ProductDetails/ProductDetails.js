@@ -3,36 +3,36 @@ import classNames from 'classnames/bind';
 import styles from './ProductDetails.module.scss';
 const cx = classNames.bind(styles);
 const ProductDetails = ()=>{
-  const [data, setData]=userState([]);
-  const [filter,setFilter]=userState(data);
-  const [loading,setLoading]=userState([false]);
-  let componentMounted =true;
+  // const [data, setData]=userState([]);
+  // const [filter,setFilter]=userState(data);
+  // const [loading,setLoading]=userState([false]);
+  // let componentMounted =true;
 
-  useEffect(() =>{
-    const getProducts =async()=> {
-    setLoading(true);
-    const reponse =await fetch( );
-    if(componentMounted){
-      setData(await reponse.clone().json());
-      setFilter(await reponse.json);
-      setLoading(false);
-      console.log(filter);
+//   useEffect(() =>{
+//     const getProducts =async()=> {
+//     setLoading(true);
+//     const reponse =await fetch( );
+//     if(componentMounted){
+//       setData(await reponse.clone().json());
+//       setFilter(await reponse.json);
+//       setLoading(false);
+//       console.log(filter);
 
-    }
-    return () =>{
-      componentMounted = false;
-    }
-  }
-getProducts();
-}, []
-  );
-  const Loading = () => {
-    return(
-      <>
-      loading....
-      </>
-    )
-  }
+//     }
+//     return () =>{
+//       componentMounted = false;
+//     }
+//   }
+// getProducts();
+// }, []
+//   );
+//   const Loading = () => {
+//     return(
+//       <>
+//       loading....
+//       </>
+//     )
+//   }
   const ShowProducts = () => {
     return (
     <div className='buttons d-flex justify-content-center mb-5 pb-5'>
