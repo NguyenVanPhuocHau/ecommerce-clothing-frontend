@@ -5,6 +5,6 @@ const routes = {
     // cart
     cart: '/cart',
     //chi tiết sp
-    chi: '/chi',
+    productDetail: '/productdetail',
 };
 export default routes;
