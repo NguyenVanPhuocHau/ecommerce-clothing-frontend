@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import styles from '../Header/Header.module.scss';
 import { NavLink } from 'react-router-dom';
 import Button from 'components/Button';
+import HeaderSlickSlider from './HeaderSlickSlider/HeaderSlickSlider';
 // import Button from "~/components/Button";
 
 const cx = classNames.bind(styles);
@@ -144,6 +145,7 @@ function Header() {
                 ></Button>
             </div>
             {/* </div> */}
+            
         </div>
     );
 }
