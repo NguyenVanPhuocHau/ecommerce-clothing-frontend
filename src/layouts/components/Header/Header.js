@@ -104,7 +104,7 @@ function Header() {
                     }
                 ></Button>
                 <Button
-                    to="/user"
+                    to="/register"
                     className={cx('cart', 'sign-in')}
                     leftIcon={
                         <svg
