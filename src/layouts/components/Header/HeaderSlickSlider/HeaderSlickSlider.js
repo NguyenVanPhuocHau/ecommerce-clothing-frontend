@@ -19,7 +19,7 @@ export default function HeaderSlickSlider() {
         arrows: false,
     };
     return (
-        // <div className={cx('slick')}>
+        <div className={cx('wrapper', 'grid')}>
         <Slider {...settings} className={cx('slick-slider')} >
             <div>
                 <p style={{marginTop: "9px"}}>Thêm vào giỏ 499.000 ₫ để miễn phí vận chuyển</p>
@@ -28,6 +28,6 @@ export default function HeaderSlickSlider() {
                 <p style={{marginTop: "9px"}}>ĐỔI HÀNG MIỄN PHÍ - Tại tất cả cửa hàng trong 30 ngày</p>
             </div>
         </Slider>
-        // </div>
+        </div>
     );
 }
