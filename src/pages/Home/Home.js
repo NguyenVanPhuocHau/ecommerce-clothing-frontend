@@ -17,10 +17,8 @@ export default function Home() {
         
     };
     return (
-        <div className={cx('wrapper')}>
-            <div className={cx('bg-banner', 'grid')}>
-                <div className={cx('home-banner-slide', 'grid')}>
-                    <Slider {...settings}>
+        <div>
+            <Slider {...settings}>
                         <div>
                             <img
                                 src="https://media.canifa.com/Simiconnector/banner_name_tablet1679156030.webp"
@@ -65,8 +63,13 @@ export default function Home() {
                         </div>
                         
                     </Slider>
+        <div className={cx('wrapper')}>
+            <div className={cx('bg-banner', 'grid')}>
+                <div className={cx('home-banner-slide', 'grid')}>
+                    
                 </div>
             </div>
+        </div>
         </div>
     );
 }
