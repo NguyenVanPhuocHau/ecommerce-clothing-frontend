@@ -1,0 +1,79 @@
+// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import 'normalize.css';
+
+:root {
+    --primary: #2e3f6e;
+    --secondary: #3d528b;
+    --button: #4db7fe;
+    --white: #fff;
+    --black: #333;
+    --border-transparent: #ede4e0;
+    --border-white: #eee;
+    --border-grey: rgb(216, 214, 214);
+    --border-filter-mobile: #808080;
+    --yellow: #fce700;
+    --danger: #cf0a0a;
+    --warning: #f49d1a;
+    --success: #009eff;
+    --grey: #808080;
+    --grey-light: #f9f9f9;
+    --violet-light: #7d93b2;
+    --blue-light: rgb(231, 231, 247);
+    --green: #319a33;
+}
+* {
+    box-sizing: border-box;
+
+}
+@font-face {
+    font-family: bookingFont;
+    src: url('./font/770a8fca674a3550e241a6de7fa82d8b.woff');
+    font-weight: 500;
+}
+@font-face {
+    font-family: bookingFont;
+    src: url('./font/8bd7856b64b4313341ebfbc0136c9d74.woff');
+    font-weight: 700;
+}
+html {
+    font-size: 62.5%;
+    color: var(--white);
+    font-family: bookingFont, sans-serif;
+}
+
+body {
+    font-size: 1.6rem;
+    text-rendering: optimizespeed;
+    color: var(--primary);
+    min-width: 300px;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.8rem;
+    margin-bottom: 4px;
+    margin-top: 4px;
+}
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+}
+
+ul {
+    list-style: none;
+}
