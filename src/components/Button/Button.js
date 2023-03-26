@@ -19,6 +19,7 @@ function Button({
                     leftIcon,
                     rightIcon,
                     onClick,
+                    dropDownMenu,
                     ...passProps
                 }) {
     let Comp = 'button';
@@ -58,8 +59,10 @@ function Button({
     return (
         <Comp className={classes} {...props}>
             {leftIcon && <div className={cx('icon')}>{leftIcon}</div>}
+            {dropDownMenu}
             <span className={cx('title')}>{children}</span>
             {rightIcon && <div className={cx('icon')}>{rightIcon}</div>}
+           
         </Comp>
     );
 }
