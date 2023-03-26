@@ -8,7 +8,7 @@ const publicRoutes = [
     { path: config.routes.home, component:  Home},
     { path: config.routes.productDetail, component:  ProductDetails},
     { path: config.routes.register, component:  Register},
-    { path: config.routes.Login, component:  Login},
+    { path: config.routes.login, component:  Login},
 
 
 ];

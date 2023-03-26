@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from '../Header/Header.module.scss';
-import { NavLink } from 'react-router-dom';
+import {Link, NavLink } from 'react-router-dom';
 import Button from 'components/Button';
 import HeaderSlickSlider from './HeaderSlickSlider/HeaderSlickSlider';
 // import Button from "~/components/Button";
@@ -8,29 +8,30 @@ import HeaderSlickSlider from './HeaderSlickSlider/HeaderSlickSlider';
 const cx = classNames.bind(styles);
 function Header() {
     return (
-        <div className={cx('wrapper', '')}>
+        <div className={cx('wrapper', 'grid')}>
             {/* <div className={cx('header-container')}> */}
             <div className={cx('left')}>
-                <NavLink to="/" className={cx('logo')}>
+                <NavLink to="/" className={cx('logo', 'nav-link')}>
                     {/* https://www.bing.com/images/search?view=detailV2&ccid=NKVlx4em&id=BDBA63199158E43AC20AB0EC9F3834C95E5CC413&thid=OIP.NKVlx4emhGNqIZ2CsWELRQAAAA&mediaurl=https%3A%2F%2Fi.pinimg.com%2Fcustom_covers%2F216x146%2F398498335717636937_1506683521.jpg&cdnurl=https%3A%2F%2Fth.bing.com%2Fth%2Fid%2FR.34a565c787a684636a219d82b1610b45%3Frik%3DE8RcXsk0OJ%252fssA%26pid%3DImgRaw%26r%3D0&exph=146&expw=216&q=logos+clothing+shop+%c4%91%e1%ba%b9pred+background+&simid=608038769679755016&form=IRPRST&ck=A3003B58DB024742480B1A6B70FFF100&selectedindex=1&pivotparams=insightsToken%3Dccid_vxHD29Qs*cp_E37C123D058799F09507D344CBFBE933*mid_47D817EDB687B99A98217A164246E02F3E3F8A37*simid_608029715895763053*thid_OIP.vxHD29QsayjB89ee79eslAHaFj&vt=0&sim=11&iss=VSI */}
                     <img
                         src="https://th.bing.com/th/id/OIP.61M4nvkMqDImVpEsiD1_EwAAAA?pid=ImgDet&w=207&h=146&c=7&dpr=1.3"
                         alt="logo-img"
                     />
                 </NavLink>
+                
                 <div className={cx('header-menu')}>
                     <ul className={cx('ul')}>
                         <li className={cx('nav-item')}>
-                            <NavLink className={cx('item')}>Nam</NavLink>
+                            <NavLink className={cx('item', 'nav-link')}>Nam</NavLink>
                         </li>
                         <li>
-                            <NavLink className={cx('item')}>Nữ</NavLink>
+                            <NavLink className={cx('item', 'nav-link')}>Nữ</NavLink>
                         </li>
                         <li>
-                            <NavLink className={cx('item')}>Trẻ em</NavLink>
+                            <NavLink className={cx('item', 'nav-link')}>Trẻ em</NavLink>
                         </li>
                         <li>
-                            <NavLink className={cx('item')}>GEN Z</NavLink>
+                            <NavLink className={cx('item', 'nav-link')}>GEN Z</NavLink>
                         </li>
                     </ul>
                 </div>
@@ -38,7 +39,7 @@ function Header() {
             <div className={cx('right')}>
                 <div className={cx('input-group', 'mb-4', 'border', 'rounded-pill', 'p-1')}>
                     <div className={cx('input-group-prepend', 'border-0')}>
-                        <button id="button-addon4" type="button" className={cx('btn', 'btn-link', 'text-info')}>
+                        <Button id="button-addon4" type="button" className={cx('btn', 'btn-link', 'text-info')} name="search">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -53,7 +54,7 @@ function Header() {
                                     d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
                                 />
                             </svg>
-                        </button>
+                        </Button>
                     </div>
                     <input
                         type="search"
@@ -65,6 +66,7 @@ function Header() {
 
                 <Button
                     to="/favorite"
+                    name="yêu tích"
                     className={cx('cart', 'sign-in')}
                     leftIcon={
                         <svg
@@ -85,6 +87,7 @@ function Header() {
                 ></Button>
                 <Button
                     to="/store"
+                    name="cửa hàng"
                     className={cx('cart', 'sign-in')}
                     leftIcon={
                         <svg
@@ -104,7 +107,8 @@ function Header() {
                     }
                 ></Button>
                 <Button
-                    to="/register"
+                    // to="/register"
+                    name="user"
                     className={cx('cart', 'user', 'sign-in')}
                     leftIcon={
                         <svg
@@ -126,10 +130,14 @@ function Header() {
                         <div className={cx('menu-user')}>
                             <ul>
                                 <li className={cx('menu-item')}>
-                                    <NavLink to="/login">Đăng nhập</NavLink>
+                                    <Link to="/login" className={cx('nav-link')}>
+                                        Đăng nhập
+                                    </Link>
                                 </li>
                                 <li className={cx('menu-item')}>
-                                    <NavLink to="/register">Đăng ký</NavLink>
+                                    <NavLink to="/register" className={cx('nav-link')}>
+                                        Đăng ký
+                                    </NavLink>
                                 </li>
                             </ul>
                         </div>
@@ -137,7 +145,8 @@ function Header() {
                 ></Button>
 
                 <Button
-                    to="/cart"
+                    to="/login"
+                    name="giỏ hàng"
                     className={cx('cart', 'sign-in')}
                     leftIcon={
                         <svg
@@ -157,6 +166,7 @@ function Header() {
                     }
                 ></Button>
             </div>
+           
             {/* </div> */}
         </div>
     );

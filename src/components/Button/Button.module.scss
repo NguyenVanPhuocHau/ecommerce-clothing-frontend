@@ -31,6 +31,10 @@
     }
 }
 
+.text{
+    display: none;
+}
+
 .outline {
     color: var(--primary);
     border-color: currentColor;
