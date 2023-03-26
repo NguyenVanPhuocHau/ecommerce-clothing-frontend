@@ -5,7 +5,7 @@ const routes = {
     // Register
     register: '/register',
     // Login
-    Login: '/login',
+    login: '/login',
     // cart
     cart: '/cart',
     //chi tiết sp
