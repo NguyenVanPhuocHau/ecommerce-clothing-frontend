@@ -1,3 +1,4 @@
+import Login from "pages/Login";
 import ProductDetails from "pages/ProductDetails";
 import Register from "pages/Register";
 import config from "../config"
@@ -7,6 +8,7 @@ const publicRoutes = [
     { path: config.routes.home, component:  Home},
     { path: config.routes.productDetail, component:  ProductDetails},
     { path: config.routes.register, component:  Register},
+    { path: config.routes.Login, component:  Login},
 
 
 ];

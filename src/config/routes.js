@@ -4,6 +4,8 @@ const routes = {
     not_found: '*',
     // Register
     register: '/register',
+    // Login
+    Login: '/login',
     // cart
     cart: '/cart',
     //chi tiết sp

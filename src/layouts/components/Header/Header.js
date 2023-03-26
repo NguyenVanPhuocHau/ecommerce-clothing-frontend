@@ -105,7 +105,7 @@ function Header() {
                 ></Button>
                 <Button
                     to="/register"
-                    className={cx('cart', 'sign-in')}
+                    className={cx('cart', 'user', 'sign-in')}
                     leftIcon={
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +122,20 @@ function Header() {
                             />
                         </svg>
                     }
+                    dropDownMenu={
+                        <div className={cx('menu-user')}>
+                            <ul>
+                                <li className={cx('menu-item')}>
+                                    <NavLink to="/login">Đăng nhập</NavLink>
+                                </li>
+                                <li className={cx('menu-item')}>
+                                    <NavLink to="/register">Đăng ký</NavLink>
+                                </li>
+                            </ul>
+                        </div>
+                    }
                 ></Button>
+
                 <Button
                     to="/cart"
                     className={cx('cart', 'sign-in')}
@@ -145,7 +158,6 @@ function Header() {
                 ></Button>
             </div>
             {/* </div> */}
-            
         </div>
     );
 }
