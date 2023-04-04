@@ -9,12 +9,15 @@
     "babel-plugin-import": "^1.13.6",
     "babel-plugin-root-import": "^6.6.0",
     "classnames": "^2.3.2",
+    "node-sass": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
     "react-search-bar": "^2.2.0",
+    "react-slick": "^0.29.0",
     "sass": "^1.59.2",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -45,7 +48,7 @@
     "babel-plugin-module-resolver": "^5.0.0",
     "dotenv-webpack": "^8.0.1",
     "react-router-dom": "^6.8.2",
-    "webpack": "^5.76.1",
+    "webpack": "^5.76.3",
     "webpack-cli": "^5.0.1"
   },
   "explorer.compactFolders": false,

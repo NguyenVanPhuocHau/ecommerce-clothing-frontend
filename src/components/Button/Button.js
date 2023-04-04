@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { Link,NavLink } from 'react-router-dom';
 import styles from './Button.module.scss';
 
 const cx = classNames.bind(styles);
@@ -10,6 +10,7 @@ function Button({
                     primary = false,
                     outline = false,
                     text = false,
+                    name,
                     rounded = false,
                     disabled = false,
                     small = false,
@@ -19,6 +20,7 @@ function Button({
                     leftIcon,
                     rightIcon,
                     onClick,
+                    dropDownMenu,
                     ...passProps
                 }) {
     let Comp = 'button';
@@ -58,8 +60,10 @@ function Button({
     return (
         <Comp className={classes} {...props}>
             {leftIcon && <div className={cx('icon')}>{leftIcon}</div>}
+            {dropDownMenu}
             <span className={cx('title')}>{children}</span>
             {rightIcon && <div className={cx('icon')}>{rightIcon}</div>}
+            <p className={cx('text')}>{name}</p>
         </Comp>
     );
 }
