@@ -1,5 +1,5 @@
 .home {
-    color: red;
+    // color: red;
 }
 .content {
     padding: 0px !important;
@@ -35,12 +35,20 @@
         }
 
         .block-content {
+            .product-items {
+                display: block;
+                margin-left: -4px;
+                margin-right: -4px;
+            }
             .product-item {
                 padding-right: 4px;
                 padding-left: 4px;
-
                 padding: 0 8px;
                 list-style: none;
+                .slick-arrow {
+                    top: calc((100% - 172px) / 2);
+                    top: -o-calc((100% - 172px)/ 2);
+                }
                 .product-item-info {
                     position: relative;
                     .product-item-photo {
@@ -49,6 +57,18 @@
                         margin-bottom: 20px;
                         position: relative;
                         overflow: hidden;
+                        .product-item-image-label {
+                            position: absolute;
+                            left: 0;
+                            width: 100%;
+                            bottom: 0;
+                            z-index: 10;
+                            pointer-events: none;
+                            img {
+                                display: block;
+                                width: 100%;
+                            }
+                        }
                         .product-item-image-label {
                             position: absolute;
                             left: 0;
@@ -219,3 +239,114 @@
     display: flex;
     min-height: 47px;
 }
+#slick .slick-prev {
+    right: auto;
+    left: 20px;
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+#slick .arrow_prev,
+#slick .arrow_next {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(https://icons-for-free.com/iconfiles/png/512/next+right+icon-1320166862802397293.png);
+    top: 50%;
+    margin-top: -16px;
+    right: 20px;
+    z-index: 10;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+// .slider-arrow {
+//     color: red;
+// }
+
+.product-items .slick-arrow.slick-prev{
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    // background-image: url(https://icons-for-free.com/iconfiles/png/512/next+right+icon-1320166862802397293.png);
+    top: 50%;
+    margin-top: -16px;
+    right: 20px;
+    z-index: 10;
+    background-color: transparent;
+    color: black;
+    cursor: pointer;
+}
+.product-items .slick-arrow.slick-next {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    // background-image: url(https://icons-for-free.com/iconfiles/png/512/next+right+icon-1320166862802397293.png);
+    top: 50%;
+    margin-top: -16px;
+    right: 20px;
+    z-index: 10;
+    background-color: transparent;
+    color: black;
+    cursor: pointer;
+}
+.product-items .slick-prev::before,
+.product-items .slick-next::before {
+    display: none;
+}
+.product-items .slick-arrow.slick-next {
+    // right: -70px;
+}
+.product-items .slick-arrow.slick-prev {
+    left: -70px;
+}
+.product-items .slick-dots li button:before {
+    font-size: 15px;
+}
+.product-items .slick-dots li {
+    top: 15px;
+}
+
+
+.Home_testimonial__80zgq .slick-arrow.slick-prev,
+.Home_testimonial__80zgq .slick-arrow.slick-next {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(https://icons-for-free.com/iconfiles/png/512/next+right+icon-1320166862802397293.png);
+    top: 50%;
+    margin-top: -16px;
+    right: 20px;
+    z-index: 10;
+    background-color: transparent;
+    cursor: pointer;
+}
+.Home_testimonial__80zgq .slick-prev::before,
+.Home_testimonial__80zgq .slick-next::before {
+  display: none;
+}
+.Home_testimonial__80zgq .slick-arrow.slick-next {
+  right: -70px;
+}
+.Home_testimonial__80zgq .slick-arrow.slick-prev {
+  left: -70px;
+}
+.Home_testimonial__80zgq .slick-dots li button:before {
+  font-size: 15px;
+}
+.Home_testimonial__80zgq .slick-dots li {
+  top: 15px;
+}
+
