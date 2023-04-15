@@ -1,0 +1,33 @@
+.testimonial .slick-arrow.slick-prev,
+.testimonial .slick-arrow.slick-next {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-image: url(https://icons-for-free.com/iconfiles/png/512/next+right+icon-1320166862802397293.png); */
+  top: 50%;
+  margin-top: -16px;
+  right: 20px;
+  z-index: 10;
+  background-color: transparent;
+  cursor: pointer;
+  color: black;
+}
+.testimonial .slick-prev::before,
+.testimonial .slick-next::before {
+  display: none;
+}
+.testimonial .slick-arrow.slick-next {
+  /* right: -70px; */
+}
+.testimonial .slick-arrow.slick-prev {
+  left: -70px;
+}
+.testimonial .slick-dots li button:before {
+  font-size: 15px;
+}
+.testimonial .slick-dots li {
+  top: 15px;
+}
