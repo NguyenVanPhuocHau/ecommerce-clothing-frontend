@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
 // import './Testimonial.css';
 // import 'slick-carousel/slick/slick.css';
 // import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
+import Product from 'components/Product/Product';
+import BannerIncentives from './BannerIncentives/BannerIncentives';
 // import { IconName } from '@material-ui/icons';
 
 const cx = classNames.bind(styles);
@@ -25,39 +27,33 @@ export default function Home() {
         console.log(props);
         const { className, onClick } = props;
         return (
-            <div className={className} onClick={onClick}>
-            {/* <ArrowForwardIos style={{ color: 'gray', fontSize: '45px' }} /> */}
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                // className="w-6 h-6"
-                // style={{color: "red"}}
-                // color='red'
-                // className={cx('slick-arrow','slick-next')}
-            >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-        </div>
-        );
-    };
-    const NextBtn = (props) => {
-        const { className, onClick } = props;
-        return (
-            <div className={className} onClick={onClick}>
+            <div className={cx('slick-arrow', 'slick-prev')} onClick={onClick}>
                 {/* <ArrowForwardIos style={{ color: 'gray', fontSize: '45px' }} /> */}
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    strokeWidth="1.5"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    // class="w-6 h-6"
+                >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </div>
+        );
+    };
+    const NextBtn = (props) => {
+        const { className, onClick } = props;
+        return (
+            <div className={cx('slick-arrow', 'slick-next')} onClick={onClick}>
+                {/* <ArrowForwardIos style={{ color: 'gray', fontSize: '45px' }} /> */}
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
                     stroke="currentColor"
                     // className="w-6 h-6"
-                    // style={{color: "red"}}
-                    // color='red'
-                    // className={cx('slick-arrow','slick-next')}
                 >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
@@ -68,10 +64,27 @@ export default function Home() {
     const settingprouctslick = {
         slidesToShow: 4,
         slidesToScroll: 1,
-        nextArrow:<NextBtn />,
-        prevArrow:<PreviousBtn />
-        
+
+        prevArrow: <PreviousBtn />,
+        nextArrow: <NextBtn />,
     };
+
+    const [selectedColor, setSelectedColor] = useState('sr227');
+    const [coderDefaut, setcoderDefaut] = useState('sr227');
+    function handleColorClick(e) {
+        const color = e.currentTarget.getAttribute('data-color');
+        setSelectedColor(color);
+
+        // const swatchOptions = Array.from(e.currentTarget.parentNode.querySelectorAll('#pd01'));
+        // alert(swatchOptions.length)
+        // swatchOptions.forEach((option) => {
+        //     if (option !== e.currentTarget) {
+        //         option.classList.remove('selected');
+        //     } else {
+        //         option.classList.add('selected');
+        //     }
+        // });
+    }
 
     return (
         <div>
@@ -126,16 +139,23 @@ export default function Home() {
                 </div>
             </div> */}
                 <div className={cx('site-main')}>
+                    {/* Sản phẩm mới  */}
                     <div className={cx('block-product')}>
                         <div className={cx('block-heading', 'home-heading')}>
                             <h2 className={cx('title')}>Sản phẩm mới</h2>
                         </div>
                         <div className={cx('block-content')}>
-                            {/* <div className={cx('col-sm-9')}> */}
-                            <div className={cx('product-items', 'testimonial')} id='slick'>
-                                {/* <div className={cx()}> */}
-                                <Slider {...settingprouctslick}  >
-                                    <div
+                            <div className={cx('product-items', 'testimonial')} id="slick">
+                                <Slider {...settingprouctslick}>
+                                    <Product />
+                                    <Product />
+                                    <Product />
+                                    <Product />
+                                    <Product />
+                                    <Product />
+                                    <Product />
+
+                                    {/* <div
                                         className={cx('product-item', 'item')}
                                         style={{ width: '100%', display: 'inline-block' }}
                                     >
@@ -175,21 +195,21 @@ export default function Home() {
                                             <div className={cx('product-item-details')}>
                                                 <div className={cx('swatch-attribute-options')}>
                                                     <div
-                                                        className={cx('swatch-option color selected')}
+                                                        className={cx('swatch-option', 'color', 'selected')}
                                                         style={{
                                                             backgroundImage:
                                                                 'url("https://media.canifa.com/attribute/swatch/images/sr227.png")',
                                                         }}
                                                     ></div>
                                                     <div
-                                                        className={cx('swatch-option color')}
+                                                        className={cx('swatch-option', 'color')}
                                                         style={{
                                                             backgroundImage:
                                                                 'url("https://media.canifa.com/attribute/swatch/images/sw001.png")',
                                                         }}
                                                     ></div>
                                                     <div
-                                                        className={cx('swatch-option color')}
+                                                        className={cx('swatch-option', 'color')}
                                                         style={{
                                                             backgroundImage:
                                                                 'url("https://media.canifa.com/attribute/swatch/images/sy182.png")',
@@ -218,431 +238,32 @@ export default function Home() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div
-                                        className={cx('product-item', 'item')}
-                                        style={{ width: '100%', display: 'inline-block' }}
-                                    >
-                                        <div className={cx('product-item-info')}>
-                                            <div className={cx('product-item-photo')}>
-                                                <div className={cx('product-item-image-label')}>
-                                                    <img
-                                                        data-v-27331a1a=""
-                                                        width="100"
-                                                        height="100"
-                                                        src="https://media.canifa.com/attribute/swatch/t/a/tag_new_web.webp"
-                                                        // onerror="this.onerror=null;this.src='https://media.canifa.com/attribute/swatch/t/a/tag_new_web.png'"
-                                                        alt=""
-                                                    />
-                                                </div>
-                                                <a
-                                                    href="/ao-phong-nam-8ts21s020"
-                                                    className={cx('product-image-container')}
-                                                    aria-label="Áo phông nam cotton USA in hình"
-                                                >
-                                                    <img
-                                                        src="https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.webp"
-                                                        alt="Áo phông nam cotton USA in hình"
-                                                        width="100"
-                                                        height="100"
-                                                        // onError="this.onerror=null;this.src='https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.jpg'"
-                                                        // onError="this.src='https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.jpg'"
-                                                        className={cx('product-image-photo')}
-                                                    />
-                                                </a>
-                                                <div>
-                                                    <button className={cx('product-item-button-tocart')}>
-                                                        Thêm vào giỏ hàng
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div className={cx('product-item-details')}>
-                                                <div className={cx('swatch-attribute-options')}>
-                                                    <div
-                                                        className={cx('swatch-option color selected')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sr227.png")',
-                                                        }}
-                                                    ></div>
-                                                    <div
-                                                        className={cx('swatch-option color')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sw001.png")',
-                                                        }}
-                                                    ></div>
-                                                    <div
-                                                        className={cx('swatch-option color')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sy182.png")',
-                                                        }}
-                                                    ></div>
-                                                </div>
-                                                <h3
-                                                    aria-label="Áo phông nam cotton USA in hình"
-                                                    className={cx('product-item-name')}
-                                                >
-                                                    <a
-                                                        href="/ao-phong-nam-8ts21s020"
-                                                        aria-label="Áo phông nam cotton USA in hình"
-                                                    >
-                                                        Áo phông nam cotton USA in hình
-                                                    </a>
-                                                </h3>
-                                                <div slot="price" className={cx('price-box')}>
-                                                    <span className={cx('normal-price')}>
-                                                        <span className={cx('price')}>124.500 ₫</span>
-                                                    </span>
-                                                    <span className={cx('price-percent')}>-50%</span>
-                                                    <span className={cx('old-price')}>
-                                                        <span className={cx('price')}>249.000 ₫</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        className={cx('product-item', 'item')}
-                                        style={{ width: '100%', display: 'inline-block' }}
-                                    >
-                                        <div className={cx('product-item-info')}>
-                                            <div className={cx('product-item-photo')}>
-                                                <div className={cx('product-item-image-label')}>
-                                                    <img
-                                                        data-v-27331a1a=""
-                                                        width="100"
-                                                        height="100"
-                                                        src="https://media.canifa.com/attribute/swatch/t/a/tag_new_web.webp"
-                                                        // onerror="this.onerror=null;this.src='https://media.canifa.com/attribute/swatch/t/a/tag_new_web.png'"
-                                                        alt=""
-                                                    />
-                                                </div>
-                                                <a
-                                                    href="/ao-phong-nam-8ts21s020"
-                                                    className={cx('product-image-container')}
-                                                    aria-label="Áo phông nam cotton USA in hình"
-                                                >
-                                                    <img
-                                                        src="https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.webp"
-                                                        alt="Áo phông nam cotton USA in hình"
-                                                        width="100"
-                                                        height="100"
-                                                        // onError="this.onerror=null;this.src='https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.jpg'"
-                                                        // onError="this.src='https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.jpg'"
-                                                        className={cx('product-image-photo')}
-                                                    />
-                                                </a>
-                                                <div>
-                                                    <button className={cx('product-item-button-tocart')}>
-                                                        Thêm vào giỏ hàng
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div className={cx('product-item-details')}>
-                                                <div className={cx('swatch-attribute-options')}>
-                                                    <div
-                                                        className={cx('swatch-option color selected')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sr227.png")',
-                                                        }}
-                                                    ></div>
-                                                    <div
-                                                        className={cx('swatch-option color')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sw001.png")',
-                                                        }}
-                                                    ></div>
-                                                    <div
-                                                        className={cx('swatch-option color')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sy182.png")',
-                                                        }}
-                                                    ></div>
-                                                </div>
-                                                <h3
-                                                    aria-label="Áo phông nam cotton USA in hình"
-                                                    className={cx('product-item-name')}
-                                                >
-                                                    <a
-                                                        href="/ao-phong-nam-8ts21s020"
-                                                        aria-label="Áo phông nam cotton USA in hình"
-                                                    >
-                                                        Áo phông nam cotton USA in hình
-                                                    </a>
-                                                </h3>
-                                                <div slot="price" className={cx('price-box')}>
-                                                    <span className={cx('normal-price')}>
-                                                        <span className={cx('price')}>124.500 ₫</span>
-                                                    </span>
-                                                    <span className={cx('price-percent')}>-50%</span>
-                                                    <span className={cx('old-price')}>
-                                                        <span className={cx('price')}>249.000 ₫</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        className={cx('product-item', 'item')}
-                                        style={{ width: '100%', display: 'inline-block' }}
-                                    >
-                                        <div className={cx('product-item-info')}>
-                                            <div className={cx('product-item-photo')}>
-                                                <div className={cx('product-item-image-label')}>
-                                                    <img
-                                                        data-v-27331a1a=""
-                                                        width="100"
-                                                        height="100"
-                                                        src="https://media.canifa.com/attribute/swatch/t/a/tag_new_web.webp"
-                                                        // onerror="this.onerror=null;this.src='https://media.canifa.com/attribute/swatch/t/a/tag_new_web.png'"
-                                                        alt=""
-                                                    />
-                                                </div>
-                                                <a
-                                                    href="/ao-phong-nam-8ts21s020"
-                                                    className={cx('product-image-container')}
-                                                    aria-label="Áo phông nam cotton USA in hình"
-                                                >
-                                                    <img
-                                                        src="https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.webp"
-                                                        alt="Áo phông nam cotton USA in hình"
-                                                        width="100"
-                                                        height="100"
-                                                        // onError="this.onerror=null;this.src='https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.jpg'"
-                                                        // onError="this.src='https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.jpg'"
-                                                        className={cx('product-image-photo')}
-                                                    />
-                                                </a>
-                                                <div>
-                                                    <button className={cx('product-item-button-tocart')}>
-                                                        Thêm vào giỏ hàng
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div className={cx('product-item-details')}>
-                                                <div className={cx('swatch-attribute-options')}>
-                                                    <div
-                                                        className={cx('swatch-option color selected')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sr227.png")',
-                                                        }}
-                                                    ></div>
-                                                    <div
-                                                        className={cx('swatch-option color')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sw001.png")',
-                                                        }}
-                                                    ></div>
-                                                    <div
-                                                        className={cx('swatch-option color')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sy182.png")',
-                                                        }}
-                                                    ></div>
-                                                </div>
-                                                <h3
-                                                    aria-label="Áo phông nam cotton USA in hình"
-                                                    className={cx('product-item-name')}
-                                                >
-                                                    <a
-                                                        href="/ao-phong-nam-8ts21s020"
-                                                        aria-label="Áo phông nam cotton USA in hình"
-                                                    >
-                                                        Áo phông nam cotton USA in hình
-                                                    </a>
-                                                </h3>
-                                                <div slot="price" className={cx('price-box')}>
-                                                    <span className={cx('normal-price')}>
-                                                        <span className={cx('price')}>124.500 ₫</span>
-                                                    </span>
-                                                    <span className={cx('price-percent')}>-50%</span>
-                                                    <span className={cx('old-price')}>
-                                                        <span className={cx('price')}>249.000 ₫</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        className={cx('product-item', 'item')}
-                                        style={{ width: '100%', display: 'inline-block' }}
-                                    >
-                                        <div className={cx('product-item-info')}>
-                                            <div className={cx('product-item-photo')}>
-                                                <div className={cx('product-item-image-label')}>
-                                                    <img
-                                                        data-v-27331a1a=""
-                                                        width="100"
-                                                        height="100"
-                                                        src="https://media.canifa.com/attribute/swatch/t/a/tag_new_web.webp"
-                                                        // onerror="this.onerror=null;this.src='https://media.canifa.com/attribute/swatch/t/a/tag_new_web.png'"
-                                                        alt=""
-                                                    />
-                                                </div>
-                                                <a
-                                                    href="/ao-phong-nam-8ts21s020"
-                                                    className={cx('product-image-container')}
-                                                    aria-label="Áo phông nam cotton USA in hình"
-                                                >
-                                                    <img
-                                                        src="https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.webp"
-                                                        alt="Áo phông nam cotton USA in hình"
-                                                        width="100"
-                                                        height="100"
-                                                        // onError="this.onerror=null;this.src='https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.jpg'"
-                                                        // onError="this.src='https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.jpg'"
-                                                        className={cx('product-image-photo')}
-                                                    />
-                                                </a>
-                                                <div>
-                                                    <button className={cx('product-item-button-tocart')}>
-                                                        Thêm vào giỏ hàng
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div className={cx('product-item-details')}>
-                                                <div className={cx('swatch-attribute-options')}>
-                                                    <div
-                                                        className={cx('swatch-option color selected')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sr227.png")',
-                                                        }}
-                                                    ></div>
-                                                    <div
-                                                        className={cx('swatch-option color')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sw001.png")',
-                                                        }}
-                                                    ></div>
-                                                    <div
-                                                        className={cx('swatch-option color')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sy182.png")',
-                                                        }}
-                                                    ></div>
-                                                </div>
-                                                <h3
-                                                    aria-label="Áo phông nam cotton USA in hình"
-                                                    className={cx('product-item-name')}
-                                                >
-                                                    <a
-                                                        href="/ao-phong-nam-8ts21s020"
-                                                        aria-label="Áo phông nam cotton USA in hình"
-                                                    >
-                                                        Áo phông nam cotton USA in hình
-                                                    </a>
-                                                </h3>
-                                                <div slot="price" className={cx('price-box')}>
-                                                    <span className={cx('normal-price')}>
-                                                        <span className={cx('price')}>124.500 ₫</span>
-                                                    </span>
-                                                    <span className={cx('price-percent')}>-50%</span>
-                                                    <span className={cx('old-price')}>
-                                                        <span className={cx('price')}>249.000 ₫</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        className={cx('product-item', 'item')}
-                                        style={{ width: '100%', display: 'inline-block' }}
-                                    >
-                                        <div className={cx('product-item-info')}>
-                                            <div className={cx('product-item-photo')}>
-                                                <div className={cx('product-item-image-label')}>
-                                                    <img
-                                                        data-v-27331a1a=""
-                                                        width="100"
-                                                        height="100"
-                                                        src="https://media.canifa.com/attribute/swatch/t/a/tag_new_web.webp"
-                                                        // onerror="this.onerror=null;this.src='https://media.canifa.com/attribute/swatch/t/a/tag_new_web.png'"
-                                                        alt=""
-                                                    />
-                                                </div>
-                                                <a
-                                                    href="/ao-phong-nam-8ts21s020"
-                                                    className={cx('product-image-container')}
-                                                    aria-label="Áo phông nam cotton USA in hình"
-                                                >
-                                                    <img
-                                                        src="https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.webp"
-                                                        alt="Áo phông nam cotton USA in hình"
-                                                        width="100"
-                                                        height="100"
-                                                        // onError="this.onerror=null;this.src='https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.jpg'"
-                                                        // onError="this.src='https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.jpg'"
-                                                        className={cx('product-image-photo')}
-                                                    />
-                                                </a>
-                                                <div>
-                                                    <button className={cx('product-item-button-tocart')}>
-                                                        Thêm vào giỏ hàng
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div className={cx('product-item-details')}>
-                                                <div className={cx('swatch-attribute-options')}>
-                                                    <div
-                                                        className={cx('swatch-option color selected')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sr227.png")',
-                                                        }}
-                                                    ></div>
-                                                    <div
-                                                        className={cx('swatch-option color')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sw001.png")',
-                                                        }}
-                                                    ></div>
-                                                    <div
-                                                        className={cx('swatch-option color')}
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://media.canifa.com/attribute/swatch/images/sy182.png")',
-                                                        }}
-                                                    ></div>
-                                                </div>
-                                                <h3
-                                                    aria-label="Áo phông nam cotton USA in hình"
-                                                    className={cx('product-item-name')}
-                                                >
-                                                    <a
-                                                        href="/ao-phong-nam-8ts21s020"
-                                                        aria-label="Áo phông nam cotton USA in hình"
-                                                    >
-                                                        Áo phông nam cotton USA in hình
-                                                    </a>
-                                                </h3>
-                                                <div slot="price" className={cx('price-box')}>
-                                                    <span className={cx('normal-price')}>
-                                                        <span className={cx('price')}>124.500 ₫</span>
-                                                    </span>
-                                                    <span className={cx('price-percent')}>-50%</span>
-                                                    <span className={cx('old-price')}>
-                                                        <span className={cx('price')}>249.000 ₫</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div> */}
                                 </Slider>
-                                {/* </div> */}
                             </div>
-                            {/* </div> */}
+                        </div>
+                    </div>
+
+                    {/* Banner Incentives */}
+                    <BannerIncentives />
+
+                    {/* Sản phẩm giá tốt */}
+                    <div className={cx('block-product')}>
+                        <div className={cx('block-heading', 'home-heading')}>
+                            <h2 className={cx('title')}>Sản phẩm giá tốt</h2>
+                        </div>
+                        <div className={cx('block-content')}>
+                            <div className={cx('product-items', 'testimonial')} id="slick">
+                                <Slider {...settingprouctslick}>
+                                    <Product />
+                                    <Product />
+                                    <Product />
+                                    <Product />
+                                    <Product />
+                                    <Product />
+                                    <Product />
+                                </Slider>
+                            </div>
                         </div>
                     </div>
                 </div>
