@@ -1,0 +1,55 @@
+.block-uu-dai {
+    padding-top: 25px;
+    padding-bottom: 25px;
+     img {
+        display: block;
+        width: 100%;
+    }
+}
+
+.home-heading {
+    margin-bottom: 10px;
+    .home-heading .title {
+        margin: 0;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+    }
+}
+
+.row {
+    margin-left: -4px;
+    margin-right: -4px;
+}
+.row {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    display: -ms-flexbox;
+    display: flex;
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+.row [class*='col-sm'],
+.row [class*='col-xs'] {
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+a {
+    text-decoration: none;
+    color: #63b1bc;
+}
+
+img {
+    height: auto;
+    width: auto;
+}
+img {
+    max-width: 100%;
+}
+
+.col-sm-6 {
+    width: 50%;
+}
