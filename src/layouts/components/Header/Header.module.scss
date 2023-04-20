@@ -1,5 +1,5 @@
 .wrapper {
-    background: var(--primary);
+    background: var(--white);
     height: 80px;
     display: flex !important;
     justify-content: space-between;
@@ -215,8 +215,9 @@
     display: block;
 
     &:hover {
-        background-color: var(--button);
+        background-color: var(--grey);
         cursor: pointer;
+        border-radius: 5px;
     }
 }
 .menu-button {
@@ -231,7 +232,7 @@
 
 .cart {
     svg {
-        color: var(--button) !important;
+        color: var(--black) !important;
         width: 24px;
         height: 24px;
     }

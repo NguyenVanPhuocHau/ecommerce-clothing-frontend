@@ -1,12 +1,14 @@
 import classNames from 'classnames/bind';
 import styles from '../Header/Header.module.scss';
-import {Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Button from 'components/Button';
 import HeaderSlickSlider from './HeaderSlickSlider/HeaderSlickSlider';
+import { useDispatch, useSelector } from 'react-redux';
 // import Button from "~/components/Button";
-
+import { myuser } from 'redux/authenticationSlide';
 const cx = classNames.bind(styles);
 function Header() {
+    const user = useSelector(myuser);
     return (
         <div className={cx('wrapper', 'grid')}>
             {/* <div className={cx('header-container')}> */}
@@ -18,7 +20,7 @@ function Header() {
                         alt="logo-img"
                     />
                 </NavLink>
-                
+
                 <div className={cx('header-menu')}>
                     <ul className={cx('ul')}>
                         <li className={cx('nav-item')}>
@@ -33,13 +35,19 @@ function Header() {
                         <li>
                             <NavLink className={cx('item', 'nav-link')}>GEN Z</NavLink>
                         </li>
+                       
                     </ul>
                 </div>
             </div>
             <div className={cx('right')}>
                 <div className={cx('input-group', 'mb-4', 'border', 'rounded-pill', 'p-1')}>
                     <div className={cx('input-group-prepend', 'border-0')}>
-                        <Button id="button-addon4" type="button" className={cx('btn', 'btn-link', 'text-info')} name="search">
+                        <Button
+                            id="button-addon4"
+                            type="button"
+                            className={cx('btn', 'btn-link', 'text-info')}
+                            name="search"
+                        >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -127,20 +135,37 @@ function Header() {
                         </svg>
                     }
                     dropDownMenu={
-                        <div className={cx('menu-user')}>
-                            <ul>
-                                <li className={cx('menu-item')}>
-                                    <Link to="/login" className={cx('nav-link')}>
-                                        Đăng nhập
-                                    </Link>
-                                </li>
-                                <li className={cx('menu-item')}>
-                                    <NavLink to="/register" className={cx('nav-link')}>
-                                        Đăng ký
-                                    </NavLink>
-                                </li>
-                            </ul>
-                        </div>
+                        user !== null ? (
+                            <div className={cx('menu-user')}>
+                                <ul>
+                                    <li className={cx('menu-item')}>
+                                        <Link to="/" className={cx('nav-link')}>
+                                            {user?.username}
+                                        </Link>
+                                    </li>
+                                    <li className={cx('menu-item')}>
+                                        <NavLink to="/register" className={cx('nav-link')}>
+                                            Đăng xuất
+                                        </NavLink>
+                                    </li>
+                                </ul>
+                            </div>
+                        ) : (
+                            <div className={cx('menu-user')}>
+                                <ul>
+                                    <li className={cx('menu-item')}>
+                                        <Link to="/login" className={cx('nav-link')}>
+                                            Đăng nhập
+                                        </Link>
+                                    </li>
+                                    <li className={cx('menu-item')}>
+                                        <NavLink to="/register" className={cx('nav-link')}>
+                                            Đăng ký
+                                        </NavLink>
+                                    </li>
+                                </ul>
+                            </div>
+                        )
                     }
                 ></Button>
 
@@ -166,7 +191,7 @@ function Header() {
                     }
                 ></Button>
             </div>
-           
+
             {/* </div> */}
         </div>
     );
