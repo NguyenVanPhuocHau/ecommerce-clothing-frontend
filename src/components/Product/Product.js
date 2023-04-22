@@ -3,8 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './Product.module.scss';
 const cx = classNames.bind(styles);
 function Product() {
-
-
+    const [hoveredButtonAddCart, setHoveredButtonAddCart] = useState(false);
     const [selectedColor, setSelectedColor] = useState('sr227');
     const [coderDefaut, setcoderDefaut] = useState('sr227');
     function handleColorClick(e) {
@@ -22,13 +21,27 @@ function Product() {
         // });
     }
 
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const handleOptionClick = (option) => {
+
+        setSelectedOption(option);
+    };
+
+    const handleChooseSize = () => setHoveredButtonAddCart(!hoveredButtonAddCart);
+    const handlehiddenChooseColor = () => setHoveredButtonAddCart(false);
+
     return (
-        <div className={cx('product-item', 'item')} style={{ width: '100%', display: 'inline-block' }} id="pd01">
+        <div
+            className={cx('product-item', 'item')}
+            style={{ width: '100%', display: 'inline-block' }}
+            id="pd01"
+            onMouseLeave={handlehiddenChooseColor}
+        >
             <div className={cx('product-item-info')}>
                 <div className={cx('product-item-photo')}>
                     <div className={cx('product-item-image-label')}>
                         <img
-                            data-v-27331a1a=""
                             width="100"
                             height="100"
                             src="https://media.canifa.com/attribute/swatch/t/a/tag_new_web.webp"
@@ -52,8 +65,54 @@ function Product() {
                         />
                     </a>
                     <div>
-                        <button className={cx('product-item-button-tocart')}>Thêm vào giỏ hàng</button>
+                        <button className={cx('product-item-button-tocart')} onClick={handleChooseSize}>
+                            Thêm vào giỏ hàng
+                        </button>
                     </div>
+                    {hoveredButtonAddCart ? (
+                        <div className={cx('product-item-action-hover-side')}>
+                            <div className={cx('swatch-attribute', 'size', 'not-selected')}>
+                                <span className={cx('swatch-attribute-label')}>
+                                    <span>Vui lòng chọn size </span>
+                                </span>
+                                {/* <div className={cx('swatch-attribute-options')}>
+                                    <div className={cx('swatch-option', 'text','selected')}>S</div>
+                                    <div className={cx('swatch-option', 'text')}>M</div>
+                                    <div className={cx('swatch-option', 'text')}>L</div>
+                                    <div className={cx('swatch-option', 'text')}>XL</div>
+                                </div> */}
+                                <div className={cx('swatch-attribute-options')}>
+                                    <div
+                                        className={cx('swatch-option', 'text', { selected: selectedOption === 'S' })}
+                                        onClick={() => handleOptionClick('S')}
+                                    >
+                                        S
+                                    </div>
+                                    <div
+                                        className={cx('swatch-option', 'text', { selected: selectedOption === 'M' })}
+                                        onClick={() => handleOptionClick('M')}
+                                    >
+                                        M
+                                    </div>
+                                    <div
+                                        className={cx('swatch-option', 'text', { selected: selectedOption === 'L' })}
+                                        onClick={() => handleOptionClick('L')}
+                                    >
+                                        L
+                                    </div>
+                                    <div
+                                        className={cx('swatch-option', 'text', { selected: selectedOption === 'XL' })}
+                                        onClick={() => handleOptionClick('XL')}
+                                    >
+                                        XL
+                                    </div>
+                                </div>
+                            </div>
+                            <button className={cx('product-item-action', 'action-tocart',{active: selectedOption !==null})}>Thêm vào giỏ</button>
+                        </div>
+                    ) : (
+                        <div></div>
+                    )}
                 </div>
                 <div className={cx('product-item-details')}>
                     <div className={cx('swatch-attribute-options')}>

@@ -15,6 +15,18 @@
             margin-bottom: 20px;
             position: relative;
             overflow: hidden;
+            // .product-item-image-label {
+            //     position: absolute;
+            //     left: 0;
+            //     width: 100%;
+            //     bottom: 0;
+            //     z-index: 10;
+            //     pointer-events: none;
+            //     img {
+            //         display: block;
+            //         width: 100%;
+            //     }
+            // }
             .product-item-image-label {
                 position: absolute;
                 left: 0;
@@ -27,21 +39,7 @@
                     width: 100%;
                 }
             }
-            .product-item-image-label {
-                position: absolute;
-                left: 0;
-                width: 100%;
-                bottom: 0;
-                z-index: 10;
-                pointer-events: none;
-                img {
-                    display: block;
-                    width: 100%;
-                }
-            }
-            .product-item-button-tocart {
-                display: none;
-            }
+
             .product-item-button-tocart {
                 color: #333f48;
                 font-weight: 600;
@@ -49,7 +47,6 @@
                 line-height: 16px;
                 padding: 12px 33px;
                 background-color: #fff;
-                display: block;
                 text-align: center;
                 cursor: pointer;
                 text-transform: uppercase;
@@ -64,6 +61,14 @@
                 border-radius: 0;
                 white-space: nowrap;
             }
+            // .product-item-button-tocart {
+            //     opacity: 0;
+            //     visibility: hidden;
+            // }
+            // .product-item-action-hover-side {
+            //     opacity: 1;
+            //     visibility: visible;
+            // }
         }
     }
 
@@ -134,6 +139,128 @@
             }
         }
     }
+
+    .product-item-action-hover-side {
+        position: absolute;
+        // top: 0;
+        // left: 0;
+        // width: 100%;
+        // bottom: 60px;
+        color: #fff;
+        text-align: center;
+        background: rgba(51, 63, 72, 0.56);
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+    }
+
+    .product-item-action-hover-side {
+        top: auto;
+        background-color: #fff;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        width: auto;
+        padding: 32px 15px 24px;
+        -ms-flex-align: center;
+        align-items: center;
+        z-index: 11;
+    }
+    &:hover .product-item-action-hover-side {
+        opacity: 1;
+        -webkit-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+        transform: translate(0, 0);
+        -webkit-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+    }
+
+    .swatch-attribute.size {
+        padding: 20px 10px 0;
+        -ms-flex-align: baseline;
+        align-items: baseline;
+        display: -ms-flexbox;
+        background: #f6f6f6;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+        display: flex;
+        .swatch-attribute-label {
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: -0.01em;
+            color: #333f48;
+            text-transform: uppercase;
+            margin: 0 0 16px;
+            text-align: center;
+            width: 100%;
+        }
+        .swatch-attribute-options {
+            -ms-flex-pack: center;
+            justify-content: center;
+            width: 100%;
+            .swatch-option.text.selected {
+                border: 2px solid #333f48;
+                background-image: none;
+            }
+            .swatch-option.text {
+                width: 44px;
+                height: 44px;
+                margin: 0 6px 8px;
+                border: 1px solid #d2d1d4;
+                color: #333f48;
+                text-align: center;
+                letter-spacing: -0.01em;
+                text-transform: uppercase;
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 42px;
+                overflow: hidden;
+            }
+        }
+    }
+
+    .swatch-attribute.size {
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 0 0 24px;
+        background-color: transparent;
+    }
+
+    .swatch-attribute-options {
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    .product-item-action.action-tocart.active {
+        background-color: #333f48;
+        color: #fff;
+    }
+    .product-item-action.action-tocart {
+        position: static;
+        background-color: #e8e8ea;
+        color: #d2d1d4;
+        text-align: center;
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 10px 15px;
+        height: 40px;
+        border: none;
+        width: auto;
+    }
+    &:hover .product-item-button-tocart {
+        display: block;
+    }
 }
 .product-item-details {
     height: 110px;
@@ -159,6 +286,16 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
+    }
+    .swatch-option.text {
+        margin-bottom: 14px;
+        min-width: 30px;
+        height: 30px;
+        line-height: 27px;
+        border-radius: 0;
+        border: 1px solid #333f48;
+        -webkit-box-shadow: none;
+        box-shadow: none;
     }
 }
 
@@ -283,4 +420,24 @@
 a {
     text-decoration: none;
     color: #63b1bc;
+}
+
+.product-item-button-tocart {
+    display: none;
+}
+
+.product-item .swatch-attribute.not-selected .swatch-attribute-label,
+.product-item .swatch-attribute.not-selected .swatch-attribute-options {
+    -webkit-animation: shake 1s ease 1;
+    animation: shake 1s ease 1;
+}
+
+.swatch-attribute-options {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
 }
