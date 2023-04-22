@@ -39,6 +39,9 @@
                 display: block;
                 margin-left: -4px;
                 margin-right: -4px;
+                &:hover .product-item-button-tocart {
+                    display: block;
+                }
             }
         }
     }
