@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Product.module.scss';
 const cx = classNames.bind(styles);
-function Product() {
+function Product(props) {
+    const [listColors, setListColors] = useState(props.colors);
+    const [listSizes, setListSizes] = useState(props.sizes);
     const [hoveredButtonAddCart, setHoveredButtonAddCart] = useState(false);
-    const [selectedColor, setSelectedColor] = useState('sr227');
-    const [coderDefaut, setcoderDefaut] = useState('sr227');
+    const [selectedColor, setSelectedColor] = useState(listColors[0].colorCode);
+    const [coderDefaut, setcoderDefaut] = useState(listColors[0].colorCode);
     function handleColorClick(e) {
         const color = e.currentTarget.getAttribute('data-color');
         setSelectedColor(color);
@@ -24,12 +26,19 @@ function Product() {
     const [selectedOption, setSelectedOption] = useState(null);
 
     const handleOptionClick = (option) => {
-
         setSelectedOption(option);
     };
 
     const handleChooseSize = () => setHoveredButtonAddCart(!hoveredButtonAddCart);
     const handlehiddenChooseColor = () => setHoveredButtonAddCart(false);
+
+    // console.log(props.colors)
+    // setListColors([props.colors])
+    // const list = [props.colors]
+    // console.log(list)
+    function formattedPrice(p) {
+        return p.toLocaleString('vi-VN');
+    }
 
     return (
         <div
@@ -75,40 +84,29 @@ function Product() {
                                 <span className={cx('swatch-attribute-label')}>
                                     <span>Vui lòng chọn size </span>
                                 </span>
-                                {/* <div className={cx('swatch-attribute-options')}>
-                                    <div className={cx('swatch-option', 'text','selected')}>S</div>
-                                    <div className={cx('swatch-option', 'text')}>M</div>
-                                    <div className={cx('swatch-option', 'text')}>L</div>
-                                    <div className={cx('swatch-option', 'text')}>XL</div>
-                                </div> */}
                                 <div className={cx('swatch-attribute-options')}>
-                                    <div
-                                        className={cx('swatch-option', 'text', { selected: selectedOption === 'S' })}
-                                        onClick={() => handleOptionClick('S')}
-                                    >
-                                        S
-                                    </div>
-                                    <div
-                                        className={cx('swatch-option', 'text', { selected: selectedOption === 'M' })}
-                                        onClick={() => handleOptionClick('M')}
-                                    >
-                                        M
-                                    </div>
-                                    <div
-                                        className={cx('swatch-option', 'text', { selected: selectedOption === 'L' })}
-                                        onClick={() => handleOptionClick('L')}
-                                    >
-                                        L
-                                    </div>
-                                    <div
-                                        className={cx('swatch-option', 'text', { selected: selectedOption === 'XL' })}
-                                        onClick={() => handleOptionClick('XL')}
-                                    >
-                                        XL
-                                    </div>
+                                    {listSizes.map((e, i) => {
+                                        const sizeName = e.size;
+                                        return (
+                                            <div
+                                                className={cx('swatch-option', 'text', {
+                                                    selected: selectedOption === sizeName,
+                                                })}
+                                                onClick={() => handleOptionClick(sizeName)}
+                                            >
+                                                {sizeName}
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </div>
-                            <button className={cx('product-item-action', 'action-tocart',{active: selectedOption !==null})}>Thêm vào giỏ</button>
+                            <button
+                                className={cx('product-item-action', 'action-tocart', {
+                                    active: selectedOption !== null,
+                                })}
+                            >
+                                Thêm vào giỏ
+                            </button>
                         </div>
                     ) : (
                         <div></div>
@@ -116,20 +114,32 @@ function Product() {
                 </div>
                 <div className={cx('product-item-details')}>
                     <div className={cx('swatch-attribute-options')}>
-                        <div
-                            className={cx(
-                                'swatch-option',
-                                'color',
+                        {listColors.map((e, i) => {
+                            const code = e.colorCode;
+                            return (
+                                <div
+                                    className={cx(
+                                        'swatch-option',
+                                        'color',
+                                        i === 0
+                                            ? selectedColor === code && coderDefaut === code
+                                                ? 'selected'
+                                                : ''
+                                            : selectedColor === code || coderDefaut === code
+                                            ? 'selected'
+                                            : '',
+                                    )}
+                                    style={{
+                                        backgroundImage:
+                                            'url("https://media.canifa.com/attribute/swatch/images/' + code + '.png")',
+                                    }}
+                                    data-color={code}
+                                    onClick={handleColorClick}
+                                ></div>
+                            );
+                        })}
 
-                                selectedColor === 'sr227' && coderDefaut === 'sr227' ? 'selected' : '',
-                            )}
-                            style={{
-                                backgroundImage: 'url("https://media.canifa.com/attribute/swatch/images/sr227.png")',
-                            }}
-                            data-color="sr227"
-                            onClick={handleColorClick}
-                        ></div>
-                        <div
+                        {/* <div
                             className={cx(
                                 'swatch-option',
                                 'color',
@@ -152,21 +162,37 @@ function Product() {
                             }}
                             data-color="sy182"
                             onClick={handleColorClick}
-                        ></div>
+                        ></div> */}
                     </div>
                     <h3 aria-label="Áo phông nam cotton USA in hình" className={cx('product-item-name')}>
                         <a href="/ao-phong-nam-8ts21s020" aria-label="Áo phông nam cotton USA in hình">
-                            Áo phông nam cotton USA in hình
+                            {props.name}
                         </a>
                     </h3>
                     <div slot="price" className={cx('price-box')}>
                         <span className={cx('normal-price')}>
-                            <span className={cx('price')}>124.500 ₫</span>
+                            <span className={cx('price')}>{formattedPrice(props.price)} ₫</span>
                         </span>
-                        <span className={cx('price-percent')}>-50%</span>
-                        <span className={cx('old-price')}>
-                            <span className={cx('price')}>249.000 ₫</span>
-                        </span>
+                       
+                        {props.discount === 0 ? (
+                            <span className={cx('old-price')}>
+                                <span className={cx('price')}></span>
+                            </span>
+                        ) : (
+                            <span className={cx('price-percent')}>-{props.discount * 100}%</span>
+                        )}
+                        {props.discount === 0 ? (
+                            <span className={cx('old-price')}>
+                                <span className={cx('price')}></span>
+                            </span>
+                        ) : (
+                            <span className={cx('old-price')}>
+                                <span className={cx('price')}>{props.price + props.price * props.discount} ₫</span>
+                            </span>
+                        )}
+                        {/* <span className={cx('old-price')}>
+                            <span className={cx('price')}>{props.price + props.price*props.discount} ₫</span>
+                        </span> */}
                     </div>
                 </div>
             </div>
