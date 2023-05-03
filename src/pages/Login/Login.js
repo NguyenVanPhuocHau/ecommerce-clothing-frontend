@@ -37,7 +37,7 @@ function Login() {
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        if (result.status === 200) {
+                        if (result.status =200) {
                             dispatch(loginSuccess(result));
                             navigate('/');
                         } else {

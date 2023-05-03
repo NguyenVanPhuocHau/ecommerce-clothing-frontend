@@ -11,7 +11,7 @@ export default function HeaderSlickSlider() {
         // infinite: true,
         autoplay: true,
         vertical: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 2700,
         slidesToShow: 1,
         slidesToScroll: 1,
         cssEase: 'linear',

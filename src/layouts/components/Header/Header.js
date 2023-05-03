@@ -170,7 +170,7 @@ function Header() {
                 ></Button>
 
                 <Button
-                    to="/login"
+                    to="/shopcart"
                     name="giỏ hàng"
                     className={cx('cart', 'sign-in')}
                     leftIcon={
@@ -179,7 +179,7 @@ function Header() {
                             fill="none"
                             viewBox="0 0 24 24"
                             strokeWidth="1.5"
-                            stroke="currentColor"
+                            stroke="currentColor" 
                             className="w-6 h-6"
                         >
                             <path
@@ -189,7 +189,12 @@ function Header() {
                             />
                         </svg>
                     }
+
+                    span={<span className={cx('count')}>0</span>}
+                    
                 ></Button>
+              
+
             </div>
 
             {/* </div> */}
