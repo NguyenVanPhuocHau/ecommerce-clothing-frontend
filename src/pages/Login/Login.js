@@ -37,7 +37,7 @@ function Login() {
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        if (result.status =200) {
+                        if (result.status ===200) {
                             dispatch(loginSuccess(result));
                             navigate('/');
                         } else {
@@ -70,7 +70,7 @@ function Login() {
 
                 <div className={cx('row')}>
                     <div className="col l-12 m-12 c-12">
-                         <p className={cx('error-message')}>{dataLogin}</p>
+                         
                     </div>
                     <div className={cx('form-group', 'col', 'l-12', 'm-12', 'c-12')}>
                         <label htmlFor="email">Email</label>
@@ -102,6 +102,7 @@ function Login() {
                         {formik.touched.password && formik.errors.password && (
                             <p className={cx('alert-message')}>{formik.errors.password}</p>
                         )}
+                        <p className={cx('error-message')}>{dataLogin}</p>
                     </div>
                 </div>
                 <div className={cx('row')}>

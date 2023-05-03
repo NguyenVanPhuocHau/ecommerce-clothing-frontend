@@ -6,9 +6,50 @@ import HeaderSlickSlider from './HeaderSlickSlider/HeaderSlickSlider';
 import { useDispatch, useSelector } from 'react-redux';
 // import Button from "~/components/Button";
 import { myuser } from 'redux/authenticationSlide';
+import { logoutFailure, logoutStart, logoutSuccess } from 'redux/authenticationSlide';
+import { useState, useEffect, useRef } from 'react';
 const cx = classNames.bind(styles);
 function Header() {
     const user = useSelector(myuser);
+    const dispatch = useDispatch();
+    const handleLogouts = (e) => {
+        e.preventDefault();
+        localStorage.removeItem('user');
+        // window.location.reload();
+        dispatch(logoutSuccess());
+        window.location.href = '/';
+        
+    };
+    const [listItems, setListItems] = useState([]);
+    const [totalItem, setTotalItem] = useState(0);
+    const [item, setItem] = useState();
+    useEffect(() => {
+        fetch(`http://localhost:8080/api/v1/cart/cartItems/${user?.id}`, {
+            method: 'GET',
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                
+               if(response.status !== 400){
+                setListItems(response);
+                const totalItem = listItems.reduce((accumulator, currentItem) => {
+                    return accumulator + currentItem.quantity;
+                   
+                }, 0);
+                setTotalItem(totalItem)
+               }
+              
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    // const totalItem = listItems.reduce((accumulator, currentItem) => {
+    //     if (user !== null) return accumulator + currentItem.quantity;
+    //     return 0;
+    // }, 0);
+
     return (
         <div className={cx('wrapper', 'grid')}>
             {/* <div className={cx('header-container')}> */}
@@ -35,7 +76,6 @@ function Header() {
                         <li>
                             <NavLink className={cx('item', 'nav-link')}>GEN Z</NavLink>
                         </li>
-                       
                     </ul>
                 </div>
             </div>
@@ -144,7 +184,12 @@ function Header() {
                                         </Link>
                                     </li>
                                     <li className={cx('menu-item')}>
-                                        <NavLink to="/register" className={cx('nav-link')}>
+                                        <NavLink
+                                            className={cx('nav-link')}
+                                            onClick={(e) => {
+                                                handleLogouts(e);
+                                            }}
+                                        >
                                             Đăng xuất
                                         </NavLink>
                                     </li>
@@ -170,7 +215,7 @@ function Header() {
                 ></Button>
 
                 <Button
-                    to="/shopcart"
+                    to={user !== null ? '/shopcart' : '/login'}
                     name="giỏ hàng"
                     className={cx('cart', 'sign-in')}
                     leftIcon={
@@ -179,7 +224,7 @@ function Header() {
                             fill="none"
                             viewBox="0 0 24 24"
                             strokeWidth="1.5"
-                            stroke="currentColor" 
+                            stroke="currentColor"
                             className="w-6 h-6"
                         >
                             <path
@@ -189,12 +234,8 @@ function Header() {
                             />
                         </svg>
                     }
-
-                    span={<span className={cx('count')}>0</span>}
-                    
+                    span={<span className={cx('count')}>{totalItem}</span>}
                 ></Button>
-              
-
             </div>
 
             {/* </div> */}

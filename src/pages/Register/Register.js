@@ -58,7 +58,6 @@ function Register() {
                 .oneOf([Yup.ref('password'), null], 'Mật khẩu chưa khớp'),
         }),
         onSubmit: (values) => {
-            alert("hau")
             dispatch(registerStart());
             (async () => {
                 const response = await fetch('http://localhost:8080/api/auth/register', {
@@ -78,7 +77,6 @@ function Register() {
                     .then((response) => response.json())
                     .then(async (data) => {
                         console.log(data);
-                        alert(data.msg)
                         setDataRegister(data);
                         if (data.status === 200) {
                             dispatch(registerSuccess());
@@ -93,7 +91,6 @@ function Register() {
                                 navigate('/login');
                             }, 1000);
                         } else {
-                            alert("lkkf")
                             dispatch(registerFailure());
                         }
                         return data;

@@ -200,7 +200,7 @@ function Product(props) {
                             </span>
                         ) : (
                             <span className={cx('old-price')}>
-                                <span className={cx('price')}>{props.price + props.price * props.discount} ₫</span>
+                                <span className={cx('price')}>{formattedPrice(props.price + props.price * props.discount)} ₫</span>
                             </span>
                         )}
                         {/* <span className={cx('old-price')}>
