@@ -129,7 +129,8 @@
         left: 50%;
         transform: translateX(-50%);
         top: calc(100% + 10px);
-        width: 95px;
+        min-width: 103px;
+        max-width: 200px;
         &::before {
             background: transparent;
             content: '';
