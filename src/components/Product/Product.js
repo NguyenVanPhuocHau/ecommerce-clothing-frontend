@@ -5,6 +5,7 @@ const cx = classNames.bind(styles);
 function Product(props) {
     const [listColors, setListColors] = useState(props.colors);
     const [listSizes, setListSizes] = useState(props.sizes);
+    const [listImg, setListImg] = useState(props.images);
     const [hoveredButtonAddCart, setHoveredButtonAddCart] = useState(false);
     const [selectedColor, setSelectedColor] = useState(listColors[0].colorCode);
     const [coderDefaut, setcoderDefaut] = useState(listColors[0].colorCode);
@@ -50,13 +51,25 @@ function Product(props) {
             <div className={cx('product-item-info')}>
                 <div className={cx('product-item-photo')}>
                     <div className={cx('product-item-image-label')}>
-                        <img
-                            width="100"
-                            height="100"
-                            src="https://media.canifa.com/attribute/swatch/t/a/tag_new_web.webp"
-                            // onerror="this.onerror=null;this.src='https://media.canifa.com/attribute/swatch/t/a/tag_new_web.png'"
-                            alt=""
-                        />
+                        {props.event === 'mới' ? (
+                            <img
+                                width="100"
+                                height="100"
+                                src="https://media.canifa.com/attribute/swatch/t/a/tag_new_web.webp"
+                                // onerror="this.onerror=null;this.src='https://media.canifa.com/attribute/swatch/t/a/tag_new_web.png'"
+                                alt=""
+                            />
+                        ) : props.event === 'giá tốt' ? (
+                            <img
+                                width="100"
+                                height="100"
+                                src="https://media.canifa.com/attribute/swatch/t/a/tag_gt_web.png"
+                                // onerror="this.onerror=null;this.src='https://media.canifa.com/attribute/swatch/t/a/tag_new_web.png'"
+                                alt=""
+                            />
+                        ) : (
+                            <div></div>
+                        )}
                     </div>
                     <a
                         href="/ao-phong-nam-8ts21s020"
@@ -64,7 +77,7 @@ function Product(props) {
                         aria-label="Áo sát nách bé trai"
                     >
                         <img
-                            src="https://canifa.com/img/1000/1500/resize/8/t/8ts21s020-sr227-1-a.webp"
+                            src={listImg[0].image}
                             alt="Áo phông nam cotton USA in hình"
                             width="100"
                             height="100"
@@ -173,7 +186,7 @@ function Product(props) {
                         <span className={cx('normal-price')}>
                             <span className={cx('price')}>{formattedPrice(props.price)} ₫</span>
                         </span>
-                       
+
                         {props.discount === 0 ? (
                             <span className={cx('old-price')}>
                                 <span className={cx('price')}></span>

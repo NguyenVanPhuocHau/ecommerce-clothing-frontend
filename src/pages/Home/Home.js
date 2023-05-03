@@ -8,14 +8,22 @@ import Slider from 'react-slick';
 import Product from 'components/Product/Product';
 import BannerIncentives from './BannerIncentives/BannerIncentives';
 // import { IconName } from '@material-ui/icons';
+import Carousel from 'react-carousel';
 
 const cx = classNames.bind(styles);
 export default function Home() {
     const settings = {
-        // dots: true,
-        infinite: true,
+        // // dots: true,
+        // // infinite: true,
+        // autoplay: true,
+        // autoplaySpeed: 3000,
+        // slidesToShow: 1,
+        // slidesToScroll: 1,
+        // arrows: false,
+        // cssEase: 'linear',
+        // adaptiveHeight: true,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 4000, // Tăng giá trị này lên để giảm thời gian chờ giữa các lần chuyển slide
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
@@ -62,7 +70,7 @@ export default function Home() {
     };
 
     const settingprouctslick = {
-        slidesToShow: 3,
+        slidesToShow: 5,
         slidesToScroll: 1,
 
         prevArrow: <PreviousBtn />,
@@ -93,42 +101,36 @@ export default function Home() {
         })
             .then((response) => response.json())
             .then((response) => {
-                    setListProduct(response);
-                    console.log(response)
-                    console.log(response[0].productColors)
+                setListProduct(response);
+                console.log(response);
+                console.log(response[0].productColors);
             })
             .catch((err) => {
                 console.log(err);
             });
     }, []);
 
+    const images = [
+        'https://media.canifa.com/Simiconnector/banner_name_tablet1682242165.webp',
+        'https://media.canifa.com/Simiconnector/banner_name_tablet1682329031.webp',
+        'https://media.canifa.com/Simiconnector/banner_name_tablet1679156030.webp',
+        'https://media.canifa.com/Simiconnector/banner_name_tablet1679216002.webp',
+        'https://media.canifa.com/Simiconnector/banner_name_tablet1682242165.webp',
+        'https://media.canifa.com/Simiconnector/banner_name_tablet1682329031.webp'
+    ];
     return (
         <div>
             <Slider {...settings}>
-                <div>
+                {/* <div>
                     <img
-                        src="https://media.canifa.com/Simiconnector/banner_name_tablet1679156030.webp"
+                        src="https://media.canifa.com/Simiconnector/banner_name_tablet1682242165.webp"
                         alt="img-house"
                         className={cx('thumbnail-slide')}
                     />
                 </div>
                 <div>
                     <img
-                        src="https://media.canifa.com/Simiconnector/banner_name_tablet1679216002.webp"
-                        className={cx('thumbnail-slide')}
-                        alt="img-house"
-                    />
-                </div>
-                <div>
-                    <img
-                        src="https://media.canifa.com/Simiconnector/banner_name_tablet1679156030.webp"
-                        alt="img-house"
-                        className={cx('thumbnail-slide')}
-                    />
-                </div>
-                <div>
-                    <img
-                        src="https://media.canifa.com/Simiconnector/banner_name_tablet1679216002.webp"
+                        src="https://media.canifa.com/Simiconnector/banner_name_tablet1682329031.webp"
                         className={cx('thumbnail-slide')}
                         alt="img-house"
                     />
@@ -147,6 +149,21 @@ export default function Home() {
                         alt="img-house"
                     />
                 </div>
+                <div>
+                    <img
+                        src="https://media.canifa.com/Simiconnector/banner_name_tablet1682242165.webp"
+                        alt="img-house"
+                        className={cx('thumbnail-slide')}
+                    />
+                </div> */}
+                {images.map((image, index) => (
+                    // <img src={image} key={index} />
+                    <div>
+                        <img src={image} key={index}  className={cx('thumbnail-slide')}
+                        alt="img-house"/>
+                    </div>
+                ))}
+               
             </Slider>
             <div className={cx('wrapper')}>
                 {/* <div className={cx('bg-banner', 'grid')}>
@@ -163,20 +180,26 @@ export default function Home() {
                         <div className={cx('block-content')}>
                             <div className={cx('product-items', 'testimonial')} id="slick">
                                 <Slider {...settingprouctslick}>
-                                {listProduct.map((e, i) => {
-                                    return (
-                                        <Product name={e.productName} colors={e.productColors} sizes={e.productSizes} price={e.price} discount={e.discount}/>
-                                    );
-                                })}
-                                    
-                                    {/* <Product />
-                                    <Product /> */}
-                                    {/* <Product />
-                                    <Product />
-                                    <Product />
-                                    <Product /> */}
+                                    {listProduct.map((e, i) => {
+                                        return (
+                                            <Product
+                                                name={e.productName}
+                                                colors={e.productColors}
+                                                sizes={e.productSizes}
+                                                price={e.price}
+                                                discount={e.discount}
+                                                images={e.productImages}
+                                                event={e.event}
+                                            />
+                                        );
+                                    })}
 
-                                    
+                                    {/* <Product />
+                                    <Product /> */}
+                                    {/* <Product />
+                                    <Product />
+                                    <Product />
+                                    <Product /> */}
                                 </Slider>
                             </div>
                         </div>
@@ -209,4 +232,3 @@ export default function Home() {
         </div>
     );
 }
-

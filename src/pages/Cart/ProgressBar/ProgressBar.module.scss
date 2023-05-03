@@ -1,0 +1,68 @@
+@media (max-width: 1600px) {
+    .checkout-progress-bar {
+        margin-left: -40px;
+        margin-right: -40px;
+    }
+}
+
+.checkout-progress-bar {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    list-style: none;
+    padding: 40px 0 0;
+    margin: 0 -56px 80px;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-top: 1px solid #e8e8ea;
+
+    li {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        color: #77757f;
+        .step {
+            border: 1px solid #d2d1d4;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 22px;
+            color: #d2d1d4;
+            text-align: center;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: block;
+            margin-right: 8px;
+            width: 24px;
+            height: 24px;
+            border-radius: 100%;
+        }
+        &:not(:last-child)::after {
+            content: '';
+            width: 48px;
+            height: 1px;
+            background-color: #d2d1d4;
+            display: block;
+            margin: 0 24px;
+        }
+    }
+
+    li.current {
+        color: #333f48;
+        .step {
+            background-color: #333f48;
+            border-color: #333f48;
+            color: #fff;
+        }
+    }
+}
