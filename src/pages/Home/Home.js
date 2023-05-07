@@ -116,7 +116,7 @@ export default function Home() {
         'https://media.canifa.com/Simiconnector/banner_name_tablet1679156030.webp',
         'https://media.canifa.com/Simiconnector/banner_name_tablet1679216002.webp',
         'https://media.canifa.com/Simiconnector/banner_name_tablet1682242165.webp',
-        'https://media.canifa.com/Simiconnector/banner_name_tablet1682329031.webp'
+        'https://media.canifa.com/Simiconnector/banner_name_tablet1682329031.webp',
     ];
     return (
         <div>
@@ -159,11 +159,9 @@ export default function Home() {
                 {images.map((image, index) => (
                     // <img src={image} key={index} />
                     <div>
-                        <img src={image} key={index}  className={cx('thumbnail-slide')}
-                        alt="img-house"/>
+                        <img src={image} key={index} className={cx('thumbnail-slide')} alt="img-house" />
                     </div>
-                ))}
-               
+                ))} 
             </Slider>
             <div className={cx('wrapper')}>
                 {/* <div className={cx('bg-banner', 'grid')}>
@@ -183,6 +181,7 @@ export default function Home() {
                                     {listProduct.map((e, i) => {
                                         return (
                                             <Product
+                                                id={e.id}
                                                 name={e.productName}
                                                 colors={e.productColors}
                                                 sizes={e.productSizes}

@@ -11,6 +11,8 @@ const routes = {
     //chi tiết sp
     productdetails: '/productdetails',
     // cart
-    cart: "/shopcart"
+    cart: "/shopcart",
+    // checkout
+    order: "/checkout"
 };
 export default routes;

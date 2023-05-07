@@ -8,47 +8,54 @@ import { useDispatch, useSelector } from 'react-redux';
 import { myuser } from 'redux/authenticationSlide';
 import { logoutFailure, logoutStart, logoutSuccess } from 'redux/authenticationSlide';
 import { useState, useEffect, useRef } from 'react';
+import { fetchCartItems, addItem, removeItem, clearCart } from 'redux/actions';
 const cx = classNames.bind(styles);
 function Header() {
-    const user = useSelector(myuser);
+    const cartItems = useSelector(state => state.hau.items);
     const dispatch = useDispatch();
+    const user = useSelector(myuser);
+    // const dispatch = useDispatch();
     const handleLogouts = (e) => {
         e.preventDefault();
         localStorage.removeItem('user');
+        dispatch(clearCart);
         // window.location.reload();
         dispatch(logoutSuccess());
         window.location.href = '/';
         
     };
-    const [listItems, setListItems] = useState([]);
-    const [totalItem, setTotalItem] = useState(0);
-    const [item, setItem] = useState();
     useEffect(() => {
-        fetch(`http://localhost:8080/api/v1/cart/cartItems/${user?.id}`, {
-            method: 'GET',
-        })
-            .then((response) => response.json())
-            .then((response) => {
+        dispatch(fetchCartItems(user?.id));
+      }, [dispatch]);
+    // const [listItems, setListItems] = useState([]);
+    // const [totalItem, setTotalItem] = useState(0);
+    // const [item, setItem] = useState();
+    // useEffect(() => {
+    //     fetch(`http://localhost:8080/api/v1/cart/cartItems/${user?.id}`, {
+    //         method: 'GET',
+    //     })
+    //         .then((response) => response.json())
+    //         .then((response) => {
                 
-               if(response.status !== 400){
-                setListItems(response);
-                const totalItem = listItems.reduce((accumulator, currentItem) => {
-                    return accumulator + currentItem.quantity;
+    //            if(response.status !== 400){
+    //             setListItems(response);
+    //             const totalItem = listItems.reduce((accumulator, currentItem) => {
+    //                 return accumulator + currentItem.quantity;
                    
-                }, 0);
-                setTotalItem(totalItem)
-               }
+    //             }, 0);
+    //             setTotalItem(totalItem)
+    //            }
               
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, []);
 
-    // const totalItem = listItems.reduce((accumulator, currentItem) => {
-    //     if (user !== null) return accumulator + currentItem.quantity;
-    //     return 0;
-    // }, 0);
+    const total = cartItems.reduce((accumulator, currentItem) => {
+        if (user !== null) return accumulator + currentItem.quantity;
+        return 0;
+    }, 0);
 
     return (
         <div className={cx('wrapper', 'grid')}>
@@ -234,7 +241,7 @@ function Header() {
                             />
                         </svg>
                     }
-                    span={<span className={cx('count')}>{totalItem}</span>}
+                    span={<span className={cx('count')}>{total}</span>}
                 ></Button>
             </div>
 

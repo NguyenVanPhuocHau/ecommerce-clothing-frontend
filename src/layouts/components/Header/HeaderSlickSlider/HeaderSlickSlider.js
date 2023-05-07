@@ -19,7 +19,7 @@ export default function HeaderSlickSlider() {
         arrows: false,
     };
     return (
-        <div className={cx('wrapper', 'grid')}>
+        <div className={cx('wrapper', 'grid',"slick-event")}>
         <Slider {...settings} className={cx('slick-slider')} >
             <div>
                 <p style={{marginTop: "9px"}}>Thêm vào giỏ 499.000 ₫ để miễn phí vận chuyển</p>

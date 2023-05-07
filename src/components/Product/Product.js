@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Product.module.scss';
+import { myuser } from 'redux/authenticationSlide';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCartItems, addItem, removeItem, clearCart } from 'redux/actions';
 const cx = classNames.bind(styles);
 function Product(props) {
     const [listColors, setListColors] = useState(props.colors);
@@ -9,10 +12,12 @@ function Product(props) {
     const [hoveredButtonAddCart, setHoveredButtonAddCart] = useState(false);
     const [selectedColor, setSelectedColor] = useState(listColors[0].colorCode);
     const [coderDefaut, setcoderDefaut] = useState(listColors[0].colorCode);
-    function handleColorClick(e) {
+    const [colorid, setColorId] = useState(listColors[0].id);
+    const [sizeid, setSizeId] = useState(listSizes[0].id);
+    function handleColorClick(e,id) {
         const color = e.currentTarget.getAttribute('data-color');
         setSelectedColor(color);
-
+        setColorId(id)
         // const swatchOptions = Array.from(e.currentTarget.parentNode.querySelectorAll('#pd01'));
         // alert(swatchOptions.length)
         // swatchOptions.forEach((option) => {
@@ -26,8 +31,9 @@ function Product(props) {
 
     const [selectedOption, setSelectedOption] = useState(null);
 
-    const handleOptionClick = (option) => {
+    const handleOptionClick = (option,id) => {
         setSelectedOption(option);
+        setSizeId(id)
     };
 
     const handleChooseSize = () => setHoveredButtonAddCart(!hoveredButtonAddCart);
@@ -40,6 +46,22 @@ function Product(props) {
     function formattedPrice(p) {
         return p.toLocaleString('vi-VN');
     }
+
+    const cartItems = useSelector(state => state.hau.items);
+    const dispatch = useDispatch();
+    const user = useSelector(myuser);
+
+    const handleAddToCart = (e) => {
+        // alert("id p " + props.id)
+        // alert("id u " + user.id)
+        // alert("id c" + colorid)
+        // alert("id s" + sizeid)
+        
+        dispatch(addItem(props.id,user.id,colorid,sizeid,1));
+       
+    };
+ 
+    
 
     return (
         <div
@@ -100,12 +122,13 @@ function Product(props) {
                                 <div className={cx('swatch-attribute-options')}>
                                     {listSizes.map((e, i) => {
                                         const sizeName = e.size;
+                                        const id = e.id;
                                         return (
                                             <div
                                                 className={cx('swatch-option', 'text', {
                                                     selected: selectedOption === sizeName,
                                                 })}
-                                                onClick={() => handleOptionClick(sizeName)}
+                                                onClick={() => handleOptionClick(sizeName,id)}
                                             >
                                                 {sizeName}
                                             </div>
@@ -117,6 +140,7 @@ function Product(props) {
                                 className={cx('product-item-action', 'action-tocart', {
                                     active: selectedOption !== null,
                                 })}
+                                onClick={handleAddToCart}
                             >
                                 Thêm vào giỏ
                             </button>
@@ -129,6 +153,7 @@ function Product(props) {
                     <div className={cx('swatch-attribute-options')}>
                         {listColors.map((e, i) => {
                             const code = e.colorCode;
+                            const id = e.id;
                             return (
                                 <div
                                     className={cx(
@@ -147,7 +172,8 @@ function Product(props) {
                                             'url("https://media.canifa.com/attribute/swatch/images/' + code + '.png")',
                                     }}
                                     data-color={code}
-                                    onClick={handleColorClick}
+
+                                    onClick={(e) => handleColorClick(e,id)}
                                 ></div>
                             );
                         })}
