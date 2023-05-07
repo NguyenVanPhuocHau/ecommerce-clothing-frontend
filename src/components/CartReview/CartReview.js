@@ -5,44 +5,65 @@ import styles from './CartReview.module.scss';
 import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
 import { myuser } from 'redux/authenticationSlide';
-import CartItem from './CartItem/CartItem';
+// import CartItem from './CartItem/CartItem';
+import { fetchCartItems, addItem, removeItem, updateNumItem } from 'redux/actions';
 const cx = classNames.bind(styles);
-function CartReview() {
+function CartReview(props) {
+    const navigate = useNavigate();
+    const cartItems = useSelector((state) => state.hau.items);
+    const dispatch = useDispatch();
     const user = useSelector(myuser);
     const [value, setValue] = useState('10');
     const inputRef = useRef(null);
-
+    // useEffect(() => {
+    //     dispatch(fetchCartItems());
+    // }, [dispatch]);
     useEffect(() => {
         if (inputRef.current) {
             inputRef.current.value = value;
         }
     }, [value]);
 
-    const [listItems, setListItems] = useState([]);
-    const [item, setItem] = useState();
-    useEffect(() => {
-        fetch(`http://localhost:8080/api/v1/cart/cartItems/${user?.id}`, {
-            method: 'GET',
-        })
-            .then((response) => response.json())
-            .then((response) => {
-                setListItems(response);
-                console.log(response);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+    // const [listItems, setListItems] = useState([]);
+    // const [item, setItem] = useState();
+
+    // useEffect(() => {
+    //     fetch(`http://localhost:8080/api/v1/cart/cartItems/${user?.id}`, {
+    //         method: 'GET',
+    //     })
+    //         .then((response) => response.json())
+    //         .then((response) => {
+    //             setListItems(response);
+    //             console.log(response);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, []);
     function formattedPrice(p) {
         return p.toLocaleString('vi-VN');
     }
 
-    const totalItem = listItems.reduce((accumulator, currentItem) => {
+    const totalItem = cartItems.reduce((accumulator, currentItem) => {
         return accumulator + currentItem.quantity;
     }, 0);
-    const totalPrice = listItems.reduce((accumulator, currentItem) => {
+    const totalPrice = cartItems.reduce((accumulator, currentItem) => {
         return accumulator + currentItem.price * currentItem.quantity;
     }, 0);
+    const handleRemoveFromCart = (e) => {
+        dispatch(removeItem(e.id, user.id));
+        if (cartItems.length === 1) navigate('/');
+    };
+    const handlePlusNumItem = (e) => {
+        dispatch(updateNumItem(e.id, 1, user.id));
+    };
+    const handleSubNumItem = (e) => {
+        if (e.quantity === 1) {
+            dispatch(removeItem(e.id, user.id));
+        } else {
+            dispatch(updateNumItem(e.id, -1, user.id));
+        }
+    };
     return (
         <div className={cx('checkout-review')}>
             <div className={cx('checkout-step-title')}>
@@ -63,11 +84,11 @@ function CartReview() {
                         <th className={cx('col', 'subtotal')}>
                             <span>Tổng tiền</span>
                         </th>
-                        <th className={cx('col', 'actions')}></th>
+                        {props.stage === 'order' ? '' : <th className={cx('col', 'actions')}></th>}
                     </tr>
                 </thead>
                 <tbody>
-                    {listItems.map((e, i) => {
+                    {cartItems.map((e, i) => {
                         // setItem(e)
                         // console.log(item)
 
@@ -119,34 +140,64 @@ function CartReview() {
                                 <td data-th="Giá tiền" className={cx('col', 'price')}>
                                     <span className={cx('price')}>{formattedPrice(e.product.price)} ₫</span>
                                     <span className={cx('old-price')}>
-                                        {formattedPrice(e.product.price + e.product.price * e.product.discount)} ₫
+                                        {e.product.discount !== 0
+                                            ? formattedPrice(e.product.price + e.product.price * e.product.discount) +
+                                              '₫'
+                                            : ''}
                                     </span>
                                 </td>
                                 <td data-th="Số lượng" className={cx('col', 'qty')}>
-                                    <div className={cx('cart-item-qty')}>
-                                        <a className={cx('btn-number', 'btn-number-minus')}>
-                                            <span>▼</span>
-                                        </a>
-                                        <input
-                                            type="text"
-                                            readOnly="readOnly"
-                                            className={cx('input-cart-item-qty')}
-                                            // ref={inputRef.current.value=10}
-                                            value={e.quantity}
-                                        />
-                                        <a className={cx('btn-number', 'btn-number-plus')}>
-                                            <span>▲</span>
-                                        </a>
-                                    </div>
+                                    {props.stage === 'order' ? (
+                                        <div className={cx('cart-item-qty')}>
+                                            <input
+                                                type="text"
+                                                readOnly="readOnly"
+                                                className={cx('input-cart-item-qty')}
+                                                // ref={inputRef.current.value=10}
+                                                value={"x"+e.quantity}
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className={cx('cart-item-qty')}>
+                                            <a
+                                                className={cx('btn-number', 'btn-number-minus')}
+                                                onClick={() => handleSubNumItem(e)}
+                                            >
+                                                <span>▼</span>
+                                            </a>
+                                            <input
+                                                type="text"
+                                                readOnly="readOnly"
+                                                className={cx('input-cart-item-qty')}
+                                                // ref={inputRef.current.value=10}
+                                                value={e.quantity}
+                                            />
+                                            <a
+                                                className={cx('btn-number', 'btn-number-plus')}
+                                                onClick={() => handlePlusNumItem(e)}
+                                            >
+                                                <span>▲</span>
+                                            </a>
+                                        </div>
+                                    )}
                                 </td>
                                 <td data-th="Tổng tiền" className={cx('col', 'subtotal')}>
                                     <span className={cx('price')}>{formattedPrice(totalPrice)} ₫</span>
                                 </td>
-                                <td className={cx('col', 'actions')}>
-                                    <a title="Xóa" className={cx('action-delete')} style={{ cursor: 'pointer' }}>
-                                        <span>Xóa</span>
-                                    </a>
-                                </td>
+                                {props.stage === 'order' ? (
+                                    ''
+                                ) : (
+                                    <td className={cx('col', 'actions')}>
+                                        <a
+                                            title="Xóa"
+                                            className={cx('action-delete')}
+                                            style={{ cursor: 'pointer' }}
+                                            onClick={() => handleRemoveFromCart(e)}
+                                        >
+                                            <span>Xóa</span>
+                                        </a>
+                                    </td>
+                                )}
                             </tr>
                             // <CartItem  images={e.product.productImages}/>
                         );
