@@ -6,6 +6,7 @@ import config from '../config';
 import Home from '../pages/Home';
 import Cart from 'pages/Cart/Cart';
 import order from 'pages/Order/Order';
+import OrderComplete from 'pages/OrderComplete/OrderComplete';
 const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.productdetails, component: ProductDetails },
@@ -13,6 +14,7 @@ const publicRoutes = [
     { path: config.routes.login, component: Login },
     { path: config.routes.cart, component: Cart },
     { path: config.routes.order, component: order },
+    { path: config.routes.ordercomplete, component: OrderComplete },
 ];
 
 const privateRoutes = [];

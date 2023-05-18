@@ -13,6 +13,8 @@ const routes = {
     // cart
     cart: "/shopcart",
     // checkout
-    order: "/checkout"
+    order: "/checkout",
+    // checkout complete
+    ordercomplete: "/ordercomplete"
 };
 export default routes;

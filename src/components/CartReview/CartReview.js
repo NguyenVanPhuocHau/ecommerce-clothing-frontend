@@ -182,7 +182,7 @@ function CartReview(props) {
                                     )}
                                 </td>
                                 <td data-th="Tổng tiền" className={cx('col', 'subtotal')}>
-                                    <span className={cx('price')}>{formattedPrice(totalPrice)} ₫</span>
+                                    <span className={cx('price')}>{formattedPrice(e.product.price  * e.quantity)} ₫</span>
                                 </td>
                                 {props.stage === 'order' ? (
                                     ''
