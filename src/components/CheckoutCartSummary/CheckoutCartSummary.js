@@ -23,6 +23,21 @@ function CheckoutCartSummary(props) {
     function formattedPrice(p) {
         return p.toLocaleString('vi-VN');
     }
+    const handleCheckout = () => {
+        fetch(`http://localhost:8080/api/v1/payment/vnpay`, {
+            method: 'POST',
+            body: JSON.stringify({
+                vnp_Ammount: finalPrice,
+                
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => window.location.href = data.url
+            );
+    };
     return (
         <div className={cx('checkout-summary', 'checkout-summary-cart')}>
             <div className={cx('checkout-summary-title')}>Đơn hàng</div>
@@ -90,7 +105,7 @@ function CheckoutCartSummary(props) {
 
             {props.stage === 'order' ? (
                 <div className={cx('checkout-proceed-checkout')}>
-                    <button className={cx('btn-place-order')}>Thanh toán</button>
+                    <button className={cx('btn-place-order')} onClick={handleCheckout}>Thanh toán</button>
                     <div className={cx('checkout-point-info')}>
                         Tích luỹ <span style={{ color: 'rgb(218, 41, 28)' }}>0 C-point</span> cho đơn hàng
                     </div>
