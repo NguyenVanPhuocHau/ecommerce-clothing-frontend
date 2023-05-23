@@ -15,31 +15,14 @@ function CartReview(props) {
     const user = useSelector(myuser);
     const [value, setValue] = useState('10');
     const inputRef = useRef(null);
-    // useEffect(() => {
-    //     dispatch(fetchCartItems());
-    // }, [dispatch]);
+
     useEffect(() => {
         if (inputRef.current) {
             inputRef.current.value = value;
         }
     }, [value]);
 
-    // const [listItems, setListItems] = useState([]);
-    // const [item, setItem] = useState();
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:8080/api/v1/cart/cartItems/${user?.id}`, {
-    //         method: 'GET',
-    //     })
-    //         .then((response) => response.json())
-    //         .then((response) => {
-    //             setListItems(response);
-    //             console.log(response);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }, []);
     function formattedPrice(p) {
         return p.toLocaleString('vi-VN');
     }

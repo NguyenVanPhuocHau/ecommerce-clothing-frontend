@@ -15,11 +15,14 @@ import {
     UPDATENUM_ITEM_FAILURE,
     UPDATENUM_ITEM_REQUEST,
     UPDATENUM_ITEM_SUCCESS,
+    FETCH_ADDRESS_ID,
+    FETCH_NEW_ORDER_FAILURE,
+    FETCH_NEW_ORDER_REQUEST,
+    FETCH_NEW_ORDER_SUCCESS,
 } from './constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { myuser } from 'redux/authenticationSlide';
 export const fetchCartItems = (userId) => {
-    // alert("hau")
     return (dispatch) => {
         dispatch({ type: FETCH_CART_ITEMS_REQUEST });
         axios
@@ -29,6 +32,7 @@ export const fetchCartItems = (userId) => {
                     type: FETCH_CART_ITEMS_SUCCESS,
                     payload: response.data,
                 });
+                
             })
             .catch((error) => {
                 dispatch({
@@ -42,6 +46,13 @@ export const fetchCartItems = (userId) => {
 export const clearCart = () => {
     return {
         type: CLEAR_CART,
+    };
+};
+
+export const fetchAddressId = (addressId) => {
+    return {
+        type: FETCH_ADDRESS_ID,
+        payload: addressId,
     };
 };
 
@@ -70,7 +81,7 @@ export const addItem = (idProduct, idUser, idColor, idSize, quantity) => {
     };
 };
 
-export const updateNumItem = (cartItemId,num,idUser) => {
+export const updateNumItem = (cartItemId, num, idUser) => {
     return (dispatch) => {
         dispatch({ type: UPDATENUM_ITEM_REQUEST });
         axios
@@ -91,12 +102,12 @@ export const updateNumItem = (cartItemId,num,idUser) => {
     };
 };
 
-export const removeItem = (cartItemId,userId) => {
+export const removeItem = (cartItemId, userId) => {
     // alert(cartItemId)
     return (dispatch) => {
         dispatch({ type: REMOVE_ITEM_REQUEST });
         axios
-            .post(`http://localhost:8080/api/v1/cart/remove`, {cartItemId})
+            .post(`http://localhost:8080/api/v1/cart/remove`, { cartItemId })
             .then((response) => {
                 dispatch({
                     type: REMOVE_ITEM_SUCCESS,
@@ -108,6 +119,33 @@ export const removeItem = (cartItemId,userId) => {
                 // alert("sai")
                 dispatch({
                     type: REMOVE_ITEM_FAILURE,
+                    payload: error.message,
+                });
+            });
+    };
+};
+
+export const newOrderCurrent = (userId, totalAmount, payment, discountPrice, addressId) => {
+    return (dispatch) => {
+        dispatch({ type: FETCH_NEW_ORDER_REQUEST });
+        axios
+            .post('http://localhost:8080/api/v1/order/save', {
+                userId: userId,
+                totalAmount: totalAmount,
+                payment: payment,
+                discountPrice: discountPrice,
+                addressId: addressId,
+            })
+            .then((response) => {
+                dispatch({
+                    type: FETCH_NEW_ORDER_SUCCESS,
+                    payload: response.data,
+                });
+                dispatch(clearCart());
+            })
+            .catch((error) => {
+                dispatch({
+                    type: FETCH_NEW_ORDER_FAILURE,
                     payload: error.message,
                 });
             });

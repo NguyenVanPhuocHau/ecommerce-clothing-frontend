@@ -373,7 +373,6 @@
     position: relative;
 }
 
-
 ._12nksyy {
     -webkit-box-pack: start !important;
     -webkit-box-align: stretch !important;
@@ -394,4 +393,117 @@
     content: '';
 }
 
+.cart-item-info {
+    display: -ms-flexbox;
+    display: flex;
+}
 
+.cart-item-photo {
+    margin-right: 12px;
+    position: relative;
+    width: 60px;
+    min-width: 60px;
+}
+.cart-item-name {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #77757f;
+    margin-bottom: 13px;
+    a {
+        color: #77757f;
+    }
+}
+
+.cart-item-options {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+ .cart-item-option {
+    margin: 0;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+     span {
+        display: block;
+        margin-right: 4px;
+    }
+    &:not(:first-child)::before{
+        content: "/";
+    color: #d2d1d4;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    margin: 0 8px;
+
+    }
+    .swatch-option {
+        width: 14px;
+        height: 14px;
+        padding: 0;
+        min-width: 0;
+        min-height: 0;
+        border: none;
+        padding: 0;
+        margin: 0;
+        display: block;
+    }
+    .text {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
+.swatch-option {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 1px;
+    text-align: center;
+    min-width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: #333f48;
+    font-weight: 500;
+    font-size: 14px;
+    margin-right: 8px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    border-radius: 100%;
+    cursor: pointer;
+    position: relative;
+}
+
+.cart-item-option {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 3px;
+    .text {
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        margin: 0;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+        color: #333f48;
+    }
+}
+
+.old-price {
+    display: block;
+    color: #fdaa63;
+    text-decoration: line-through;
+    // margin-top: 12px;
+    font-weight: 400;
+}

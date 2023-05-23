@@ -6,14 +6,17 @@ import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
 import { data } from 'pages/ProductDetails/data';
 import { myuser } from 'redux/authenticationSlide';
+import { fetchAddressId } from 'redux/actions';
 const cx = classNames.bind(styles);
 function PopopChooseAddress(props) {
+    const dispatch = useDispatch();
     const user = useSelector(myuser);
     const [listAddress, setListAddress] = useState([]);
     const [addressChoose, setAddressChoose] = useState(props.addressCurrent);
 
     const hanleChangeAddress = (e) => {
         props.setAddressCurrent(e);
+        dispatch(fetchAddressId(e.id))
         props.handleClickClose();
     };
    

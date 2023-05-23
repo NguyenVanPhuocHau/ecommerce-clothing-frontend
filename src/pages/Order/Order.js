@@ -9,15 +9,18 @@ import CartReview from '../../components/CartReview/CartReview';
 import CheckoutCartSummary from '../../components/CheckoutCartSummary/CheckoutCartSummary';
 import PopopAddAddress from './PopopAddAddress/PopopAddAddress';
 import PopopChooseAddress from './PopopChooseAddress/PopopChooseAddress';
+import { fetchAddressId } from 'redux/actions';
 import { myuser } from 'redux/authenticationSlide';
 const cx = classNames.bind(styles);
 
 function Order() {
+    const dispatch = useDispatch();
     const user = useSelector(myuser);
     const [popopAddAddress, showPopopAddAddress] = useState(false);
     const [popopChooseAddress, showPopopChooseAddress] = useState(false);
     const toggleShowPopopAddAddress = () => {
         showPopopAddAddress(!popopAddAddress);
+     
         showPopopChooseAddress(false);
     };
     const toggleShowPopopChooseAddress = () => {
@@ -31,7 +34,8 @@ function Order() {
             .then((response) => response.json())
             .then((response) => {
                 setAddressCurrent(response);
-                console.log('response');
+                dispatch(fetchAddressId(response.id))
+                console.log('response' + response.id);
             })
             .catch((err) => {
                 console.log(err);
