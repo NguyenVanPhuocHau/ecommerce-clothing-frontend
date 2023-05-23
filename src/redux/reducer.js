@@ -12,10 +12,16 @@ import {
     UPDATENUM_ITEM_FAILURE,
     UPDATENUM_ITEM_SUCCESS,
     UPDATENUM_ITEM_REQUEST,
+    FETCH_ADDRESS_ID,
+    FETCH_NEW_ORDER_FAILURE,
+    FETCH_NEW_ORDER_SUCCESS,
+    FETCH_NEW_ORDER_REQUEST,
 } from './constants';
 
 const initialState = {
     items: [],
+    addressId: 0,
+    latestOrder: {},
     isLoading: false,
     error: null,
 };
@@ -26,6 +32,7 @@ const hauReducer = (state = initialState, action) => {
         case ADD_ITEM_REQUEST:
         case UPDATENUM_ITEM_REQUEST:
         case REMOVE_ITEM_REQUEST:
+        case FETCH_NEW_ORDER_REQUEST:
             return {
                 ...state,
                 isLoading: true,
@@ -39,6 +46,7 @@ const hauReducer = (state = initialState, action) => {
                 error: null,
             };
         case ADD_ITEM_SUCCESS:
+           
             return {
                 ...state,
                 // items: [...state.items, action.payload],
@@ -59,10 +67,20 @@ const hauReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: null,
             };
+        case FETCH_NEW_ORDER_SUCCESS:
+            alert('ok')
+            return {
+                ...state,
+                latestOrder: action.payload,
+                isLoading: false,
+                error: null,
+            };
         case FETCH_CART_ITEMS_FAILURE:
         case ADD_ITEM_FAILURE:
         case UPDATENUM_ITEM_FAILURE:
         case REMOVE_ITEM_FAILURE:
+        case FETCH_NEW_ORDER_FAILURE:
+            alert("ok")
             return {
                 ...state,
                 isLoading: false,
@@ -73,9 +91,17 @@ const hauReducer = (state = initialState, action) => {
                 ...state,
                 items: [],
             };
+        case FETCH_ADDRESS_ID:
+            return {
+                ...state,
+                addressId: action.payload, // Lưu address_id từ action vào state
+                isLoading: false,
+                error: null,
+            };
         default:
             return state;
     }
 };
+// export const addressId = (state) => state.hau.addressId;
 
 export default hauReducer;
