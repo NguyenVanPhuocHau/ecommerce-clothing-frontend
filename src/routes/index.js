@@ -7,6 +7,7 @@ import Home from '../pages/Home';
 import Cart from 'pages/Cart/Cart';
 import order from 'pages/Order/Order';
 import OrderComplete from 'pages/OrderComplete/OrderComplete';
+import Shop from 'pages/Shop/Shop';
 const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.productdetails, component: ProductDetails },
@@ -15,6 +16,7 @@ const publicRoutes = [
     { path: config.routes.cart, component: Cart },
     { path: config.routes.order, component: order },
     { path: config.routes.ordercomplete, component: OrderComplete },
+    { path: config.routes.products, component: Shop },
 ];
 
 const privateRoutes = [];
