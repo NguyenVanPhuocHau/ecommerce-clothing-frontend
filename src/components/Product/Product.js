@@ -66,7 +66,7 @@ function Product(props) {
     return (
         <div
             className={cx('product-item', 'item')}
-            style={{ width: '100%', display: 'inline-block' }}
+            style={{ width: '33.333333%', display: 'inline-block' }}
             id="pd01"
             onMouseLeave={handlehiddenChooseColor}
         >

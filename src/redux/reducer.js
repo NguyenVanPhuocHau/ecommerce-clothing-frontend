@@ -46,7 +46,6 @@ const hauReducer = (state = initialState, action) => {
                 error: null,
             };
         case ADD_ITEM_SUCCESS:
-           
             return {
                 ...state,
                 // items: [...state.items, action.payload],
@@ -68,7 +67,6 @@ const hauReducer = (state = initialState, action) => {
                 error: null,
             };
         case FETCH_NEW_ORDER_SUCCESS:
-            alert('ok')
             return {
                 ...state,
                 latestOrder: action.payload,
@@ -80,7 +78,6 @@ const hauReducer = (state = initialState, action) => {
         case UPDATENUM_ITEM_FAILURE:
         case REMOVE_ITEM_FAILURE:
         case FETCH_NEW_ORDER_FAILURE:
-            alert("ok")
             return {
                 ...state,
                 isLoading: false,

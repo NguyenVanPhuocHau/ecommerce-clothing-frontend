@@ -15,6 +15,9 @@ const routes = {
     // checkout
     order: "/checkout",
     // checkout complete
-    ordercomplete: "/ordercomplete"
+    ordercomplete: "/ordercomplete",
+    // danh sách sản phẩm
+    products: "/collections"
+
 };
 export default routes;
