@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import Button from 'components/Button';
 import HeaderSlickSlider from './HeaderSlickSlider/HeaderSlickSlider';
 import { useDispatch, useSelector } from 'react-redux';
-// import Button from "~/components/Button";
+
 import { myuser } from 'redux/authenticationSlide';
 import { logoutFailure, logoutStart, logoutSuccess } from 'redux/authenticationSlide';
 import { useState, useEffect, useRef } from 'react';
@@ -27,30 +27,7 @@ function Header() {
     useEffect(() => {
         dispatch(fetchCartItems(user?.id));
       }, [dispatch]);
-    // const [listItems, setListItems] = useState([]);
-    // const [totalItem, setTotalItem] = useState(0);
-    // const [item, setItem] = useState();
-    // useEffect(() => {
-    //     fetch(`http://localhost:8080/api/v1/cart/cartItems/${user?.id}`, {
-    //         method: 'GET',
-    //     })
-    //         .then((response) => response.json())
-    //         .then((response) => {
-                
-    //            if(response.status !== 400){
-    //             setListItems(response);
-    //             const totalItem = listItems.reduce((accumulator, currentItem) => {
-    //                 return accumulator + currentItem.quantity;
-                   
-    //             }, 0);
-    //             setTotalItem(totalItem)
-    //            }
-              
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }, []);
+
 
     const total = cartItems.reduce((accumulator, currentItem) => {
         if (user !== null) return accumulator + currentItem.quantity;
@@ -59,10 +36,10 @@ function Header() {
 
     return (
         <div className={cx('wrapper', 'grid')}>
-            {/* <div className={cx('header-container')}> */}
+           
             <div className={cx('left')}>
                 <NavLink to="/" className={cx('logo', 'nav-link')}>
-                    {/* https://www.bing.com/images/search?view=detailV2&ccid=NKVlx4em&id=BDBA63199158E43AC20AB0EC9F3834C95E5CC413&thid=OIP.NKVlx4emhGNqIZ2CsWELRQAAAA&mediaurl=https%3A%2F%2Fi.pinimg.com%2Fcustom_covers%2F216x146%2F398498335717636937_1506683521.jpg&cdnurl=https%3A%2F%2Fth.bing.com%2Fth%2Fid%2FR.34a565c787a684636a219d82b1610b45%3Frik%3DE8RcXsk0OJ%252fssA%26pid%3DImgRaw%26r%3D0&exph=146&expw=216&q=logos+clothing+shop+%c4%91%e1%ba%b9pred+background+&simid=608038769679755016&form=IRPRST&ck=A3003B58DB024742480B1A6B70FFF100&selectedindex=1&pivotparams=insightsToken%3Dccid_vxHD29Qs*cp_E37C123D058799F09507D344CBFBE933*mid_47D817EDB687B99A98217A164246E02F3E3F8A37*simid_608029715895763053*thid_OIP.vxHD29QsayjB89ee79eslAHaFj&vt=0&sim=11&iss=VSI */}
+                   
                     <img
                         src="https://th.bing.com/th/id/OIP.61M4nvkMqDImVpEsiD1_EwAAAA?pid=ImgDet&w=207&h=146&c=7&dpr=1.3"
                         alt="logo-img"

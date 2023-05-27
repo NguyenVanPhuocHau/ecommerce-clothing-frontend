@@ -3,7 +3,7 @@ import { publicRoutes } from './routes';
 import { DefaultLayout } from './layouts';
 import { Fragment } from 'react';
 
-import Review from './pages/Review';
+
 import PageNotFound from 'pages/PageNotFound';
 
 function App() {
@@ -11,9 +11,9 @@ function App() {
         <Router>
             <div className="App">
                 <Routes>
-                    {/* <Route path="forgot-password/:id/:token" element={<ForgotPassword />} /> */}
+                    
                     <Route path="*" element={<PageNotFound/>} />;
-                    <Route path="/review" element={<Review />} />;
+                   
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
                         let Layout = DefaultLayout;

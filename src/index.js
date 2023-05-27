@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
-import { SearchContextProvider } from './context/SearchContext';
+// import { SearchContextProvider } from './context/SearchContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let persistor = persistStore(store);
@@ -17,11 +17,11 @@ let persistor = persistStore(store);
 root.render(
     <Provider store={store}>
         <PersistGate persistor={persistor}>
-            <SearchContextProvider>
+            {/* <SearchContextProvider> */}
                 {/* <React.StrictMode> */}
                 <App />
                 {/* </React.StrictMode>, */}
-            </SearchContextProvider>
+            {/* </SearchContextProvider> */}
         </PersistGate>
     </Provider>,
     document.getElementById('root'),
