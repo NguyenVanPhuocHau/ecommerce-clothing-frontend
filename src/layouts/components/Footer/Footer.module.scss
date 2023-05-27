@@ -1,7 +1,7 @@
 .wrapper {
-    background-color: #f7f7f7;
+    background-color: #333f48;
     border-top: 1px solid #dddddd;
-    padding: 24px 0px;
+    padding: 30px 0px;
 }
 .footer-item {
     display: flex !important;
@@ -9,7 +9,7 @@
     margin-top: 10px;
 
     .footer-item__title {
-        color: var(--primary);
+        color: var(--white);
         font-weight: 700;
     }
     .footer-item__link {
@@ -19,4 +19,13 @@
             transition: all 0.3 ease-in-out;
         }
     }
+    a{
+        color: #ffffff;
+    }
+
+    img{
+        margin-top: 10px;
+    }
+   
 }
+

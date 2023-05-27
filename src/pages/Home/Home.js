@@ -13,17 +13,8 @@ import Carousel from 'react-carousel';
 const cx = classNames.bind(styles);
 export default function Home() {
     const settings = {
-        // // dots: true,
-        // // infinite: true,
-        // autoplay: true,
-        // autoplaySpeed: 3000,
-        // slidesToShow: 1,
-        // slidesToScroll: 1,
-        // arrows: false,
-        // cssEase: 'linear',
-        // adaptiveHeight: true,
         autoplay: true,
-        autoplaySpeed: 4000, // Tăng giá trị này lên để giảm thời gian chờ giữa các lần chuyển slide
+        autoplaySpeed: 4000,
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
@@ -36,14 +27,12 @@ export default function Home() {
         const { className, onClick } = props;
         return (
             <div className={cx('slick-arrow', 'slick-prev')} onClick={onClick}>
-                {/* <ArrowForwardIos style={{ color: 'gray', fontSize: '45px' }} /> */}
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="2"
                     stroke="currentColor"
-                    // class="w-6 h-6"
                 >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                 </svg>
@@ -82,16 +71,6 @@ export default function Home() {
     function handleColorClick(e) {
         const color = e.currentTarget.getAttribute('data-color');
         setSelectedColor(color);
-
-        // const swatchOptions = Array.from(e.currentTarget.parentNode.querySelectorAll('#pd01'));
-        // alert(swatchOptions.length)
-        // swatchOptions.forEach((option) => {
-        //     if (option !== e.currentTarget) {
-        //         option.classList.remove('selected');
-        //     } else {
-        //         option.classList.add('selected');
-        //     }
-        // });
     }
     const [listProduct, setListProduct] = useState([]);
     useEffect(() => {
@@ -121,54 +100,16 @@ export default function Home() {
     return (
         <div>
             <Slider {...settings}>
-                {/* <div>
-                    <img
-                        src="https://media.canifa.com/Simiconnector/banner_name_tablet1682242165.webp"
-                        alt="img-house"
-                        className={cx('thumbnail-slide')}
-                    />
-                </div>
-                <div>
-                    <img
-                        src="https://media.canifa.com/Simiconnector/banner_name_tablet1682329031.webp"
-                        className={cx('thumbnail-slide')}
-                        alt="img-house"
-                    />
-                </div>
-                <div>
-                    <img
-                        src="https://media.canifa.com/Simiconnector/banner_name_tablet1679156030.webp"
-                        alt="img-house"
-                        className={cx('thumbnail-slide')}
-                    />
-                </div>
-                <div>
-                    <img
-                        src="https://media.canifa.com/Simiconnector/banner_name_tablet1679216002.webp"
-                        className={cx('thumbnail-slide')}
-                        alt="img-house"
-                    />
-                </div>
-                <div>
-                    <img
-                        src="https://media.canifa.com/Simiconnector/banner_name_tablet1682242165.webp"
-                        alt="img-house"
-                        className={cx('thumbnail-slide')}
-                    />
-                </div> */}
+               
                 {images.map((image, index) => (
-                    // <img src={image} key={index} />
+                   
                     <div>
                         <img src={image} key={index} className={cx('thumbnail-slide')} alt="img-house" />
                     </div>
-                ))} 
+                ))}
             </Slider>
             <div className={cx('wrapper')}>
-                {/* <div className={cx('bg-banner', 'grid')}>
-                <div className={cx('home-banner-slide', 'grid')}>
-                    
-                </div>
-            </div> */}
+               
                 <div className={cx('site-main')}>
                     {/* Sản phẩm mới  */}
                     <div className={cx('block-product')}>
