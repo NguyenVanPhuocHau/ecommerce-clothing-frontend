@@ -66,7 +66,7 @@ function Product(props) {
     return (
         <div
             className={cx('product-item', 'item')}
-            style={{ width: '33.333333%', display: 'inline-block' }}
+            style={{  width: props.home !== "true" ? "33.333333%":"100%", display: 'inline-block' }}
             id="pd01"
             onMouseLeave={handlehiddenChooseColor}
         >
@@ -124,7 +124,7 @@ function Product(props) {
                                         const sizeName = e.size;
                                         const id = e.id;
                                         return (
-                                            <div
+                                            <div key={e.id}
                                                 className={cx('swatch-option', 'text', {
                                                     selected: selectedOption === sizeName,
                                                 })}
@@ -155,7 +155,7 @@ function Product(props) {
                             const code = e.colorCode;
                             const id = e.id;
                             return (
-                                <div
+                                <div key={e.id}
                                     className={cx(
                                         'swatch-option',
                                         'color',

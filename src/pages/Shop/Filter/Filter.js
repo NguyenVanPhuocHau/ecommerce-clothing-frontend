@@ -7,7 +7,8 @@ import { Slider } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Collapse } from 'antd';
 const cx = classNames.bind(styles);
-function Filter() {
+function Filter(props) {
+    const {selectedColors,selectedSizes,handleColorSelect,handleSizeSelect,rangeSelector,rangePrice} = props
     const { Panel } = Collapse;
     const [listSizes, setListSizes] = useState([]);
     const [listColors, setListColors] = useState([]);
@@ -39,47 +40,13 @@ function Filter() {
                 console.log(err);
             });
     }, []);
-    const [value, setValue] = useState([0, 1000000]);
-    const rangeSelector = (newValue) => {
-        setValue(newValue);
-    };
     const formatCurrency = (value) => {
         return value.toLocaleString('vi-VN', {
             style: 'currency',
             currency: 'VND',
         });
     };
-
-    const [selectedSizes, setSelectedSizes] = useState([]);
-    const [selectedColors, setSelectedColors] = useState([]);
-    const handleSizeSelect = (size) => {
-        // Kiểm tra xem size đã tồn tại trong danh sách đã chọn chưa
-        const isSelected = selectedSizes.includes(size);
     
-        if (isSelected) {
-          // Nếu size đã được chọn, ta sẽ loại bỏ nó khỏi danh sách
-          const updatedSizes = selectedSizes.filter((s) => s !== size);
-          setSelectedSizes(updatedSizes);
-        } else {
-          // Nếu size chưa được chọn, ta sẽ thêm nó vào danh sách
-          setSelectedSizes([...selectedSizes, size]);
-        }
-      };
-
-      const handleColorSelect = (color) => {
-        // Kiểm tra xem size đã tồn tại trong danh sách đã chọn chưa
-        const isSelected = selectedColors.includes(color);
-    
-        if (isSelected) {
-          // Nếu size đã được chọn, ta sẽ loại bỏ nó khỏi danh sách
-          const updatedColors = selectedColors.filter((c) => c !== color);
-          setSelectedColors(updatedColors);
-        } else {
-          // Nếu size chưa được chọn, ta sẽ thêm nó vào danh sách
-          setSelectedColors([...selectedColors, color]);
-        }
-      };
-
     return (
        
         <div className={cx('container')}>
@@ -142,7 +109,7 @@ function Filter() {
                                 <p>Khoảng giá:</p>
                                 <Slider
                                     range="true"
-                                    value={value}
+                                    value={rangePrice}
                                     min={1000}
                                     max={5000000}
                                     onChange={rangeSelector}
@@ -150,7 +117,7 @@ function Filter() {
                                     tipFormatter={formatCurrency}
                                 />
                                 <b>
-                                    {formatCurrency(value[0])} - {formatCurrency(value[1])}
+                                    {formatCurrency(rangePrice[0])} - {formatCurrency(rangePrice[1])}
                                 </b>
                             </Panel>
                         </Collapse>
