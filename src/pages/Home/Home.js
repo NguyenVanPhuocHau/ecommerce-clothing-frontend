@@ -181,6 +181,7 @@ export default function Home() {
                                     {listProduct.map((e, i) => {
                                         return (
                                             <Product
+                                                key={e.id}
                                                 id={e.id}
                                                 name={e.productName}
                                                 colors={e.productColors}
@@ -189,6 +190,7 @@ export default function Home() {
                                                 discount={e.discount}
                                                 images={e.productImages}
                                                 event={e.event}
+                                                home="true"
                                             />
                                         );
                                     })}

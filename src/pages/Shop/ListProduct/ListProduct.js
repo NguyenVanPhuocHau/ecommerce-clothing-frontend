@@ -3,58 +3,27 @@ import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './ListProduct.module.scss';
 import classNames from 'classnames/bind';
-
+import Pagination from '@material-ui/lab/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Product from 'components/Product/Product';
 const cx = classNames.bind(styles);
-function ListProduct() {
-    const [page, setPage] = useState(1);
-    const [count, setCount] = useState(0);
-    const [limit, setLimit] = useState(4);
-    const [products, setProducts] = useState([]);
-    const getRequestParams = (page, limit) => {
-        let params = {};
+function ListProduct(props) {
+    const {
+        selectedColors,
+        selectedSizes,
+        rangePrice,
+        retrieveUsers,
+        page,
+        limit,
+        setPage,
+        setLimit,
+        products,
+        count,
+        handleSelectSort
+    } = props;
 
-        if (page) {
-            params['page'] = page - 1;
-        }
-
-        if (limit) {
-            params['size'] = limit;
-        }
-
-        return params;
-    };
-    const retrieveUsers = () => {
-        const params = getRequestParams(page, limit);
-
-        fetch(`http://localhost:8080/api/v1/products/page`, {
-            method: 'GET',
-            params,
-        })
-            .then((response) => response.json())
-            .then((response) => {
-                setProducts(response.content);
-                console.log(response);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-
-        // UserDataService.getAll(params)
-        //     .then((response) => {
-        //         const { users, totalPages } = response.data;
-
-        //         setUsers(users);
-        //         setCount(totalPages);
-
-        //         console.log(response.data);
-        //     })
-        //     .catch((e) => {
-        //         console.log(e);
-        //     });
-    };
+    const [arrSize, setArrSize] = useState([]);
 
     useEffect(retrieveUsers, [page, limit]);
     const handlePageChange = (event, value) => {
@@ -65,12 +34,40 @@ function ListProduct() {
         setLimit(event.target.value);
         setPage(1);
     };
+    // const handleChange = (event) => {
+    //     this.setState({ selectedOption: event.target.value });
+    // };
+ 
     return (
         <div className={cx('contain__listHouse', 'displayContain', 'displayContain')}>
+            <div className={cx('select_contain')}>
+                <label className={cx('select')} htmlFor="slct">
+                    <select id="slct" required="required" onChange={handleSelectSort}>
+                        <option value="" disabled="disabled" selected="selected">
+                            Sấp xếp
+                        </option>
+                        <option value="A-Z">A - Z</option>
+                        <option value="Z-A">Z - A</option>
+                        <option value="lowPrice">Giá thấp </option>
+                        <option value="hightPrice">Giá cao </option>
+                    </select>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="3"
+                        stroke="currentColor"
+                        // class="w-6 h-6"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    </svg>
+                </label>
+            </div>
             <div className={cx('listHouse', 'row')}>
                 {products.map((e, i) => {
                     return (
                         <Product
+                            key={e.id}
                             id={e.id}
                             name={e.productName}
                             colors={e.productColors}
@@ -79,20 +76,21 @@ function ListProduct() {
                             discount={e.discount}
                             images={e.productImages}
                             event={e.event}
+                            home="flase"
                         />
                     );
                 })}
-                {/* <Pagination
-                    color="primary"
-                    className="my-3"
-                    count={count}
-                    page={page}
-                    siblingCount={1}
-                    boundaryCount={1}
-                    variant="outlined"
-                    onChange={handlePageChange}
-                /> */}
             </div>
+            <Pagination
+                color="primary"
+                className="my-3"
+                count={count}
+                page={page}
+                siblingCount={1}
+                boundaryCount={1}
+                variant="outlined"
+                onChange={handlePageChange}
+            />
         </div>
     );
 }
